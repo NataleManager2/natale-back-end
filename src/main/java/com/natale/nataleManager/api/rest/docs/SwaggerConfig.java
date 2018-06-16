@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@ComponentScan("com.khoubyari.example.api.rest")
+@ComponentScan("com.natale.nataleManager.api.rest")
 public class SwaggerConfig {
 
 
@@ -33,15 +33,14 @@ public class SwaggerConfig {
     
 
     private ApiInfo apiInfo() {
-        String description = "REST example";
+        String description = "NataleManager REST";
         return new ApiInfoBuilder()
-                .title("REST example")
+                .title("NataleManager REST")
                 .description(description)
                 .termsOfServiceUrl("github")
-                .license("Siamak")
+                .license("Natale")
                 .licenseUrl("")
                 .version("1.0")
- //               .contact(new Contact("siamak"))
                 .build();
     }
 

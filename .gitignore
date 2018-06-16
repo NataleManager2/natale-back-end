@@ -12,3 +12,15 @@ dependency-reduced-pom.xml
 *.idea
 *.log
 Thumbs.db
+
+# Intellij
+.idea/
+*.iml
+*.iws
+ 
+# Mac
+.DS_Store
+ 
+# Maven
+log/
+target/
