@@ -1,4 +1,4 @@
-package com.natale.nataleManager.service;
+package com.natale.nataleManager.service.impl;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

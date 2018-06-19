@@ -2,7 +2,7 @@ package com.natale.nataleManager.api.rest;
 
 import com.natale.nataleManager.domain.Hotel;
 import com.natale.nataleManager.exception.DataFormatException;
-import com.natale.nataleManager.service.HotelService;
+import com.natale.nataleManager.service.impl.HotelService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -51,7 +51,8 @@ public class HotelController extends AbstractRestHandler {
                                       @ApiParam(value = "Tha page size", required = true)
                                       @RequestParam(value = "size", required = true, defaultValue = DEFAULT_PAGE_SIZE) Integer size,
                                       HttpServletRequest request, HttpServletResponse response) {
-        return this.hotelService.getAllHotels(page, size);
+        return null;
+//                this.hotelService.getAllHotels(page, size);
     }
 
     @RequestMapping(value = "/{id}",

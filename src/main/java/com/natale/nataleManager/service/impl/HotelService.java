@@ -1,14 +1,10 @@
-package com.natale.nataleManager.service;
+package com.natale.nataleManager.service.impl;
 
 import com.natale.nataleManager.domain.Hotel;
 import com.natale.nataleManager.dao.jpa.HotelRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.metrics.CounterService;
-import org.springframework.boot.actuate.metrics.GaugeService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /*
@@ -22,11 +18,6 @@ public class HotelService {
     @Autowired
     private HotelRepository hotelRepository;
 
-    @Autowired
-    CounterService counterService;
-
-    @Autowired
-    GaugeService gaugeService;
 
     public HotelService() {
     }
@@ -47,13 +38,13 @@ public class HotelService {
         hotelRepository.delete(id);
     }
 
-    //http://goo.gl/7fxvVf
-    public Page<Hotel> getAllHotels(Integer page, Integer size) {
-        Page pageOfHotels = hotelRepository.findAll(new PageRequest(page, size));
-        // example of adding to the /metrics
-        if (size > 50) {
-            counterService.increment("Khoubyari.HotelService.getAll.largePayload");
-        }
-        return pageOfHotels;
-    }
+//    //http://goo.gl/7fxvVf
+//    public Page<Hotel> getAllHotels(Integer page, Integer size) {
+//        Page pageOfHotels = hotelRepository.findAll(new PageRequest(page, size));
+//        // example of adding to the /metrics
+//        if (size > 50) {
+//            counterService.increment("Khoubyari.HotelService.getAll.largePayload");
+//        }
+//        return pageOfHotels;
+//    }
 }
