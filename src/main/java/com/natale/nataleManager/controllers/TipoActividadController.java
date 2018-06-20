@@ -1,7 +1,7 @@
 package com.natale.nataleManager.controllers;
 
-import com.natale.nataleManager.model.Actividad;
-import com.natale.nataleManager.service.ActividadService;
+import com.natale.nataleManager.model.TipoActividad;
+import com.natale.nataleManager.service.TipoActividadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,39 +9,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/actividad")
-@Api(tags = {"actividad"})
-public class ActividadController {
+@RequestMapping(value = "/actividad/tipo")
+@Api(tags = {"tipo-actividad"})
+public class TipoActividadController {
 
-    private final ActividadService actividadService;
+    private final TipoActividadService tipoActividadService;
 
     @Autowired
-    public ActividadController(ActividadService actividadService) {
-        this.actividadService = actividadService;
+    public TipoActividadController(TipoActividadService tipoActividadService) {
+        this.tipoActividadService = tipoActividadService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene una Actividad.")
-    public Actividad get(@RequestParam("id") Long id) throws Exception {
-        return actividadService.get(id);
+    @ApiOperation(value = "Obtiene una tipo de actividad.")
+    public TipoActividad get(@RequestParam("id") Long id) throws Exception {
+        return tipoActividadService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todos las Actividades.")
-    public List<Actividad> getAll() throws Exception {
-        return actividadService.getAll();
+    @ApiOperation(value = "Obtiene un listado de todos los tipos de actividad.")
+    public List<TipoActividad> getAll() throws Exception {
+        return tipoActividadService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea una nueva Actividad")
-    public Actividad insert(@RequestBody Actividad act) throws Exception {
-        return actividadService.insert(act);
+    @ApiOperation(value = "Crea una nuevo tipo de actividad.")
+    public TipoActividad insert(@RequestBody TipoActividad act) throws Exception {
+        return tipoActividadService.insert(act);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza una Actividad")
-    public Actividad update(@RequestBody Actividad act) throws Exception {
-        return actividadService.update(act);
+    @ApiOperation(value = "Actualiza un tipo de actividad")
+    public TipoActividad update(@RequestBody TipoActividad act) throws Exception {
+        return tipoActividadService.update(act);
     }
 
 }

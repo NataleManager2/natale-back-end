@@ -1,61 +1,56 @@
 package com.natale.nataleManager.service.impl;
 
-import com.natale.nataleManager.model.Actividad;
-import com.natale.nataleManager.model.Cliente;
-import com.natale.nataleManager.repository.ActividadRepository;
-import com.natale.nataleManager.repository.ClienteRepository;
-import com.natale.nataleManager.service.ActividadService;
-import com.natale.nataleManager.service.ClienteService;
+import com.natale.nataleManager.model.SubtipoActividad;
+import com.natale.nataleManager.repository.SubtipoActividadRepository;
+import com.natale.nataleManager.service.SubtipoActividadService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
-public class ActividadServiceImpl implements ActividadService {
+public class SubtipoActividadServiceImpl implements SubtipoActividadService {
 
-    private static final Logger log = LoggerFactory.getLogger(ActividadServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(SubtipoActividadServiceImpl.class);
 
-    private final ActividadRepository actividadRepository;
+    private final SubtipoActividadRepository subtipoActividadRepository;
 
     @Autowired
-    public ActividadServiceImpl(ActividadRepository actividadRepository) {
-        this.actividadRepository = actividadRepository;
+    public SubtipoActividadServiceImpl(SubtipoActividadRepository subtipoActividadRepository) {
+        this.subtipoActividadRepository = subtipoActividadRepository;
     }
 
     @Override
-    public Actividad get(Long id) throws Exception {
-        Actividad act = new Actividad();
+    public SubtipoActividad get(Long id) throws Exception {
+        SubtipoActividad act = new SubtipoActividad();
         try{
-            act = actividadRepository.findOne(id);
-            log.debug("findOne activity id: "+id+" succesful");
+            act = subtipoActividadRepository.findOne(id);
+            log.debug("findOne SubtipoActividad id: "+id+" succesful");
         } catch (Exception e) {
-            e.printStackTrace();
-            log.error("failed findingOne activity with id: "+id);
+            log.error("failed findingOne SubtipoActividad with id: "+id+" - Error:"+e.getMessage());
         }
         return act;
     }
 
     @Override
-    public Actividad insert(Actividad act) throws Exception {
-        return actividadRepository.save(act);
+    public SubtipoActividad insert(SubtipoActividad act) throws Exception {
+        return subtipoActividadRepository.save(act);
     }
 
     @Override
-    public List<Actividad> getAll() throws Exception {
-        return actividadRepository.findAllByActBorrada(false);
+    public List<SubtipoActividad> getAll() throws Exception {
+        return subtipoActividadRepository.findAll();
     }
 
     @Override
-    public Actividad update(Actividad act) throws Exception {
-        return actividadRepository.save(act);
+    public SubtipoActividad update(SubtipoActividad act) throws Exception {
+        return subtipoActividadRepository.save(act);
     }
 
     @Override
     public void delete(Long id) throws Exception {
-        actividadRepository.delete(id);
+        subtipoActividadRepository.delete(id);
     }
 
 

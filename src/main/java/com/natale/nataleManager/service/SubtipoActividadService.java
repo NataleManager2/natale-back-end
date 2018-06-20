@@ -1,14 +1,15 @@
 package com.natale.nataleManager.service;
 
-import com.natale.nataleManager.model.Actividad;
+import com.natale.nataleManager.model.SubtipoActividad;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
-public interface ActividadService {
-    Actividad get(Long id) throws Exception;
-    Actividad insert(Actividad actividad) throws Exception;
-    List<Actividad> getAll() throws Exception;
-    Actividad update(Actividad actividad) throws Exception;
+public interface SubtipoActividadService {
+    SubtipoActividad get(Long id) throws Exception;
+    SubtipoActividad insert(SubtipoActividad subtipoActividad) throws Exception;
+    List<SubtipoActividad> getAll() throws Exception;
+    SubtipoActividad update(SubtipoActividad subtipoActividad) throws Exception;
     void delete(Long id) throws Exception;
 }

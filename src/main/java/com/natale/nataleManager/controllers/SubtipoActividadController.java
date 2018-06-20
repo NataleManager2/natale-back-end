@@ -1,7 +1,7 @@
 package com.natale.nataleManager.controllers;
 
-import com.natale.nataleManager.model.TipoActividad;
-import com.natale.nataleManager.service.TipoActividadService;
+import com.natale.nataleManager.model.SubtipoActividad;
+import com.natale.nataleManager.service.SubtipoActividadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,39 +9,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/actividad/tipo")
-@Api(tags = {"tipo-actividad"})
-public class TipoActividadController {
+@RequestMapping(value = "/actividad/subtipo")
+@Api(tags = {"subtipo-actividad"})
+public class SubtipoActividadController {
 
-    private final TipoActividadService tipoActividadService;
+    private final SubtipoActividadService subtipoActividadService;
 
     @Autowired
-    public TipoActividadController(TipoActividadService tipoActividadService) {
-        this.tipoActividadService = tipoActividadService;
+    public SubtipoActividadController(SubtipoActividadService subtipoActividadService) {
+        this.subtipoActividadService = subtipoActividadService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene una tipo de actividad.")
-    public TipoActividad get(@RequestParam("id") Long id) throws Exception {
-        return tipoActividadService.get(id);
+    @ApiOperation(value = "Obtiene una subtipo de actividad.")
+    public SubtipoActividad get(@RequestParam("id") Long id) throws Exception {
+        return subtipoActividadService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todos los tipos de actividad.")
-    public List<TipoActividad> getAll() throws Exception {
-        return tipoActividadService.getAll();
+    @ApiOperation(value = "Obtiene un listado de todos los subtipo de actividad.")
+    public List<SubtipoActividad> getAll() throws Exception {
+        return subtipoActividadService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea una nuevo tipo de actividad.")
-    public TipoActividad insert(@RequestBody TipoActividad act) throws Exception {
-        return tipoActividadService.insert(act);
+    @ApiOperation(value = "Crea una nuevo subtipo de actividad.")
+    public SubtipoActividad insert(@RequestBody SubtipoActividad act) throws Exception {
+        return subtipoActividadService.insert(act);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un tipo de actividad")
-    public TipoActividad update(@RequestBody TipoActividad act) throws Exception {
-        return tipoActividadService.update(act);
+    @ApiOperation(value = "Actualiza un subtipo de actividad")
+    public SubtipoActividad update(@RequestBody SubtipoActividad act) throws Exception {
+        return subtipoActividadService.update(act);
     }
 
 }

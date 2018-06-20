@@ -1,61 +1,56 @@
 package com.natale.nataleManager.service.impl;
 
-import com.natale.nataleManager.model.Actividad;
-import com.natale.nataleManager.model.Cliente;
-import com.natale.nataleManager.repository.ActividadRepository;
-import com.natale.nataleManager.repository.ClienteRepository;
-import com.natale.nataleManager.service.ActividadService;
-import com.natale.nataleManager.service.ClienteService;
+import com.natale.nataleManager.model.TipoActividad;
+import com.natale.nataleManager.repository.TipoActividadRepository;
+import com.natale.nataleManager.service.TipoActividadService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
-public class ActividadServiceImpl implements ActividadService {
+public class TipoActividadServiceImpl implements TipoActividadService {
 
-    private static final Logger log = LoggerFactory.getLogger(ActividadServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(TipoActividadServiceImpl.class);
 
-    private final ActividadRepository actividadRepository;
+    private final TipoActividadRepository tipoActividadRepository;
 
     @Autowired
-    public ActividadServiceImpl(ActividadRepository actividadRepository) {
-        this.actividadRepository = actividadRepository;
+    public TipoActividadServiceImpl(TipoActividadRepository tipoActividadRepository) {
+        this.tipoActividadRepository = tipoActividadRepository;
     }
 
     @Override
-    public Actividad get(Long id) throws Exception {
-        Actividad act = new Actividad();
+    public TipoActividad get(Long id) throws Exception {
+        TipoActividad tipoActividad = new TipoActividad();
         try{
-            act = actividadRepository.findOne(id);
-            log.debug("findOne activity id: "+id+" succesful");
+            tipoActividad = tipoActividadRepository.findOne(id);
+            log.debug("findOne tipoActividad id: "+id+" succesful");
         } catch (Exception e) {
-            e.printStackTrace();
-            log.error("failed findingOne activity with id: "+id);
+            log.error("failed findingOne tipoActividad with id: "+id+" "+e.getMessage());
         }
-        return act;
+        return tipoActividad;
     }
 
     @Override
-    public Actividad insert(Actividad act) throws Exception {
-        return actividadRepository.save(act);
+    public TipoActividad insert(TipoActividad tipoActividad) throws Exception {
+        return tipoActividadRepository.save(tipoActividad);
     }
 
     @Override
-    public List<Actividad> getAll() throws Exception {
-        return actividadRepository.findAllByActBorrada(false);
+    public List<TipoActividad> getAll() throws Exception {
+        return tipoActividadRepository.findAll();
     }
 
     @Override
-    public Actividad update(Actividad act) throws Exception {
-        return actividadRepository.save(act);
+    public TipoActividad update(TipoActividad tipoActividad) throws Exception {
+        return tipoActividadRepository.save(tipoActividad);
     }
 
     @Override
     public void delete(Long id) throws Exception {
-        actividadRepository.delete(id);
+        tipoActividadRepository.delete(id);
     }
 
 

@@ -11,4 +11,5 @@ public interface ClienteService {
     Cliente insert(Cliente cliente) throws Exception;
     List<Cliente> getAll() throws Exception;
     Cliente update(Cliente cliente) throws Exception;
+    void delete(Long id) throws Exception;
 }

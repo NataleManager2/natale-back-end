@@ -5,6 +5,7 @@ import com.natale.nataleManager.model.Cliente;
 import com.natale.nataleManager.service.ClienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
@@ -12,8 +13,9 @@ import java.util.List;
 public class ClienteServiceImpl implements ClienteService {
 
     private static final Logger log = LoggerFactory.getLogger(ClienteServiceImpl.class);
-    private final ClienteRepository clienteRepository;
 
+    private final ClienteRepository clienteRepository;
+    @Autowired
     public ClienteServiceImpl(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
@@ -44,6 +46,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public Cliente update(Cliente cliente) throws Exception {
         return clienteRepository.save(cliente);
+    }
+
+    @Override
+    public void delete(Long id) {
+        clienteRepository.delete(id);
     }
 
 
