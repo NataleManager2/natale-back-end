@@ -6,10 +6,6 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-
-//@Getter
-//@Setter
-//@NoArgsConstructor
 @Entity
 @Table(name="ACTIVIDAD")
 public class Actividad implements Serializable {
@@ -25,27 +21,21 @@ public class Actividad implements Serializable {
     @Column(name="ACT_DESCRIPCION")
     private String actDescripcion;
 
-    @JsonFormat(timezone = "GMT-3")
+    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
     @Column(name="ACT_FECHA_DESDE")
     private Date actFechaDesde;
 
-    @JsonFormat(timezone = "GMT-3")
+    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
     @Column(name="ACT_FECHA_HASTA")
     private Date actFechaHasta;
 
+    @JsonFormat(pattern = "hh:mm")
     @Column(name="ACT_HORA_DESDE")
     private Time actHoraDesde;
 
+    @JsonFormat(pattern = "hh:mm")
     @Column(name="ACT_HORA_HASTA")
     private Time actHoraHasta;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="ACT_TIPO_ACTIVIDAD_ID")
-    private TipoActividad actTipoActividad;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="ACT_SUBTIPO_ACTIVIDAD_ID")
-    private SubtipoActividad actSubtipoActividad;
 
     @Column(name="ACT_BORRADA")
     private int actBorrada;
@@ -53,8 +43,17 @@ public class Actividad implements Serializable {
     @Column(name="ACT_PRECIO")
     private Float actPrecio;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="ACT_PRO_ID")
     private Profesor actProfesor;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="ACT_TIPO_ACT_ID")
+    private TipoActividad actTipoActividad;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="ACT_SUBTIPO_ACT_ID")
+    private SubtipoActividad actSubtipoActividad;
 
     public Actividad() {
     }

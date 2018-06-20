@@ -23,7 +23,7 @@ public class SubtipoActividadController {
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Obtiene una subtipo de actividad.")
     public SubtipoActividad get(@RequestParam("id") Long id) throws Exception {
-        return subtipoActividadService.get(id); 
+        return subtipoActividadService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
