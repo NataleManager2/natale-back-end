@@ -1,7 +1,7 @@
 package com.natale.nataleManager.config;
 
 
-import com.natale.nataleManager.dao.jpa.ClienteRepository;
+import com.natale.nataleManager.repository.ClienteRepository;
 import com.natale.nataleManager.service.impl.ClienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -11,7 +11,7 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 
 @Configuration
-@EntityScan(basePackageClasses = {Jsr310JpaConverters.class}, basePackages = "com.natale.nataleManager.domain")
+@EntityScan(basePackageClasses = {Jsr310JpaConverters.class}, basePackages = "com.natale.nataleManager.model")
 public class ServiceConfig {
 
     @Autowired

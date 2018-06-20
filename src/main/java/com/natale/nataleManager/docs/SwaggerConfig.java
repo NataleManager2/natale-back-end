@@ -1,4 +1,4 @@
-package com.natale.nataleManager.api.rest.docs;
+package com.natale.nataleManager.docs;
 
 import com.google.common.base.Predicates;
 
@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@ComponentScan("com.natale.nataleManager.api.rest")
+@ComponentScan("com.natale.nataleManager.controllers")
 public class SwaggerConfig {
 
 

@@ -1,6 +1,6 @@
-package com.natale.nataleManager.api.rest;
+package com.natale.nataleManager.controllers;
 
-import com.natale.nataleManager.domain.RestErrorInfo;
+import com.natale.nataleManager.model.RestErrorInfo;
 import com.natale.nataleManager.exception.DataFormatException;
 import com.natale.nataleManager.exception.ResourceNotFoundException;
 import org.slf4j.Logger;

@@ -1,11 +1,14 @@
 package com.natale.nataleManager.service.impl;
 
-import com.natale.nataleManager.dao.jpa.ClienteRepository;
-import com.natale.nataleManager.domain.Cliente;
+import com.natale.nataleManager.repository.ClienteRepository;
+import com.natale.nataleManager.model.Cliente;
 import com.natale.nataleManager.service.ClienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import java.util.List;
 
+@Component
 public class ClienteServiceImpl implements ClienteService {
 
     private static final Logger log = LoggerFactory.getLogger(ClienteServiceImpl.class);
@@ -32,4 +35,16 @@ public class ClienteServiceImpl implements ClienteService {
     public Cliente insert(Cliente cliente) throws Exception {
         return clienteRepository.save(cliente);
     }
+
+    @Override
+    public List<Cliente> getAll() throws Exception {
+        return clienteRepository.findAllByCliBorrado(false);
+    }
+
+    @Override
+    public Cliente update(Cliente cliente) throws Exception {
+        return clienteRepository.save(cliente);
+    }
+
+
 }

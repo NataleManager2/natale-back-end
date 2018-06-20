@@ -1,4 +1,4 @@
-package com.natale.nataleManager.domain;
+package com.natale.nataleManager.model;
 
 import javax.persistence.*;
 
