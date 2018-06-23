@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.Date;
 
 @Entity
 @Table(name="ACTIVIDAD")
@@ -21,14 +20,6 @@ public class Actividad implements Serializable {
     @Column(name="ACT_DESCRIPCION")
     private String actDescripcion;
 
-    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
-    @Column(name="ACT_FECHA_DESDE")
-    private Date actFechaDesde;
-
-    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
-    @Column(name="ACT_FECHA_HASTA")
-    private Date actFechaHasta;
-
     @JsonFormat(pattern = "hh:mm")
     @Column(name="ACT_HORA_DESDE")
     private Time actHoraDesde;
@@ -37,7 +28,7 @@ public class Actividad implements Serializable {
     @Column(name="ACT_HORA_HASTA")
     private Time actHoraHasta;
 
-    @Column(name="ACT_BORRADA")
+    @Column(name="ACT_ACTIVA")
     private int actBorrada;
 
     @Column(name="ACT_PRECIO")
@@ -47,29 +38,7 @@ public class Actividad implements Serializable {
     @JoinColumn(name="ACT_PRO_ID")
     private Profesor actProfesor;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="ACT_TIPO_ACT_ID")
-    private TipoActividad actTipoActividad;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="ACT_SUBTIPO_ACT_ID")
-    private SubtipoActividad actSubtipoActividad;
-
     public Actividad() {
-    }
-
-    public Actividad(String actNombre, String actDescripcion, Date actFechaDesde, Date actFechaHasta, Time actHoraDesde, Time actHoraHasta, TipoActividad actTipoActividad, SubtipoActividad actSubtipoActividad, int actBorrada, Float actPrecio, Profesor actProfesor) {
-        this.actNombre = actNombre;
-        this.actDescripcion = actDescripcion;
-        this.actFechaDesde = actFechaDesde;
-        this.actFechaHasta = actFechaHasta;
-        this.actHoraDesde = actHoraDesde;
-        this.actHoraHasta = actHoraHasta;
-        this.actTipoActividad = actTipoActividad;
-        this.actSubtipoActividad = actSubtipoActividad;
-        this.actBorrada = actBorrada;
-        this.actPrecio = actPrecio;
-        this.actProfesor = actProfesor;
     }
 
     public Long getActId() {
@@ -96,22 +65,6 @@ public class Actividad implements Serializable {
         this.actDescripcion = actDescripcion;
     }
 
-    public Date getActFechaDesde() {
-        return actFechaDesde;
-    }
-
-    public void setActFechaDesde(Date actFechaDesde) {
-        this.actFechaDesde = actFechaDesde;
-    }
-
-    public Date getActFechaHasta() {
-        return actFechaHasta;
-    }
-
-    public void setActFechaHasta(Date actFechaHasta) {
-        this.actFechaHasta = actFechaHasta;
-    }
-
     public Time getActHoraDesde() {
         return actHoraDesde;
     }
@@ -126,22 +79,6 @@ public class Actividad implements Serializable {
 
     public void setActHoraHasta(Time actHoraHasta) {
         this.actHoraHasta = actHoraHasta;
-    }
-
-    public TipoActividad getActTipoActividad() {
-        return actTipoActividad;
-    }
-
-    public void setActTipoActividad(TipoActividad actTipoActividad) {
-        this.actTipoActividad = actTipoActividad;
-    }
-
-    public SubtipoActividad getActSubtipoActividad() {
-        return actSubtipoActividad;
-    }
-
-    public void setActSubtipoActividad(SubtipoActividad actSubtipoActividad) {
-        this.actSubtipoActividad = actSubtipoActividad;
     }
 
     public int getActBorrada() {

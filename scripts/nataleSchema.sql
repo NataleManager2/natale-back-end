@@ -34,22 +34,14 @@ CREATE TABLE `actividad` (
   `ACT_ID` int(20) NOT NULL AUTO_INCREMENT,
   `ACT_NOMBRE` varchar(16) DEFAULT NULL,
   `ACT_DESCRIPCION` varchar(200) DEFAULT NULL,
-  `ACT_FECHA_DESDE` date DEFAULT NULL,
-  `ACT_FECHA_HASTA` date DEFAULT NULL,
   `ACT_HORA_DESDE` time DEFAULT NULL,
   `ACT_HORA_HASTA` time DEFAULT NULL,
-  `ACT_TIPO_ACT_ID` int(11) DEFAULT NULL,
-  `ACT_SUBTIPO_ACT_ID` int(11) DEFAULT NULL,
-  `ACT_BORRADA` int(11) DEFAULT NULL,
-  `ACT_PRECIO` decimal(10,2) DEFAULT NULL,
+  `ACT_ACTIVA` int(11) DEFAULT NULL,
+  `ACT_PRECIO` float DEFAULT NULL,
   `ACT_PRO_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ACT_ID`),
-  KEY `ACT_TIPO_ACT_FK_idx` (`ACT_TIPO_ACT_ID`),
-  KEY `ACT_SUBTIPO_ACT_FK_idx` (`ACT_SUBTIPO_ACT_ID`),
   KEY `ACT_PRO_FK_idx` (`ACT_PRO_ID`),
-  CONSTRAINT `ACT_PROF_ID_FK` FOREIGN KEY (`ACT_PRO_ID`) REFERENCES `profesor` (`PRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ACT_SUBTIPO_ACT_FK` FOREIGN KEY (`ACT_SUBTIPO_ACT_ID`) REFERENCES `subtipo_actividad` (`STACT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `ACT_TIPO_ACT_FK` FOREIGN KEY (`ACT_TIPO_ACT_ID`) REFERENCES `tipo_actividad` (`TACT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `ACT_PROF_ID_FK` FOREIGN KEY (`ACT_PRO_ID`) REFERENCES `profesor` (`PRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -59,8 +51,36 @@ CREATE TABLE `actividad` (
 
 LOCK TABLES `actividad` WRITE;
 /*!40000 ALTER TABLE `actividad` DISABLE KEYS */;
-INSERT INTO `actividad` VALUES (1,'CursoPrePartoNov','Grupo de preparto Noviembre','2016-11-09','2016-12-14','20:00:00','22:30:00',1,1,0,1960.00,1),(2,'BabyFitness','Gimnasia con bebé x dos','2017-01-01','2017-12-31','17:00:00','19:00:00',3,1,0,730.00,1),(3,'PrepartoEnero','Curso Preparto Enero','2017-01-18','2017-02-22','20:30:00','23:00:00',1,1,0,2250.00,1),(4,'CursoPrePartoNov','Grupo Preparto Noviembre ','2016-11-16','2016-12-07','20:00:00','22:30:00',1,1,1,1400.00,1),(5,'Gym','Gimnasia embarazadas','2017-01-01','2017-12-31','18:30:00','20:00:00',3,1,0,530.00,1),(6,'Gym','Gimnasia embarazadas x dos','2017-01-01','2017-12-31','18:30:00','20:00:00',3,1,0,840.00,1),(7,'Gym','Gimnasia embarazadas x tres','2017-01-01','2017-12-31','18:30:00','20:00:00',3,1,0,880.00,1),(8,'BabyFitness','Gimnasia con bebé','2017-01-01','2017-12-31','17:00:00','19:00:00',3,1,0,430.00,1),(9,'BabyFitness','Gimnasia con bebé x tres','2017-01-01','2017-12-31','17:00:00','19:00:00',3,1,0,770.00,1),(10,'Preparto','Curso Preparto Diciembre','2016-12-06','2017-01-24','20:00:00','22:30:00',1,1,0,1960.00,1),(11,'PrepartoEnero','Curso Preparto Enero','2017-01-18','2017-02-22','20:00:00','22:30:00',1,1,0,1960.00,1);
+INSERT INTO `actividad` VALUES (1,'CursoPrePartoNov','Grupo de preparto Noviembre','20:00:00','22:30:00',0,1960,1),(2,'BabyFitness','Gimnasia con bebé x dos','17:00:00','19:00:00',0,730,1),(3,'PrepartoEnero','Curso Preparto Enero','20:30:00','23:00:00',0,2250,1),(4,'CursoPrePartoNov','Grupo Preparto Noviembre ','20:00:00','22:30:00',1,1400,1),(5,'Gym','Gimnasia embarazadas','18:30:00','20:00:00',0,530,1),(6,'Gym','Gimnasia embarazadas x dos','18:30:00','20:00:00',0,840,1),(7,'Gym','Gimnasia embarazadas x tres','18:30:00','20:00:00',0,880,1),(8,'BabyFitness','Gimnasia con bebé','17:00:00','19:00:00',0,430,1),(9,'BabyFitness','Gimnasia con bebé x tres','17:00:00','19:00:00',0,770,1),(10,'Preparto','Curso Preparto Diciembre','20:00:00','22:30:00',0,1960,1),(11,'PrepartoEnero','Curso Preparto Enero','20:00:00','22:30:00',0,1960,1);
 /*!40000 ALTER TABLE `actividad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `calendario`
+--
+
+DROP TABLE IF EXISTS `calendario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `calendario` (
+  `CAL_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CAL_CUR_ID` int(11) DEFAULT NULL,
+  `CAL_CLASE_NRO` int(11) DEFAULT NULL,
+  `CAL_MATERIAL` blob,
+  `CAL_FECHA` datetime DEFAULT NULL,
+  PRIMARY KEY (`CAL_ID`),
+  KEY `CAL_CUR_FK_idx` (`CAL_CUR_ID`),
+  CONSTRAINT `CAL_CUR_FK` FOREIGN KEY (`CAL_CUR_ID`) REFERENCES `curso` (`CUR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `calendario`
+--
+
+LOCK TABLES `calendario` WRITE;
+/*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -101,26 +121,35 @@ INSERT INTO `cliente` VALUES (1,13175901,'Montserrat Dominguez','2147483647','mo
 UNLOCK TABLES;
 
 --
--- Table structure for table `cliente_actividad`
+-- Table structure for table `curso`
 --
 
-DROP TABLE IF EXISTS `cliente_actividad`;
+DROP TABLE IF EXISTS `curso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cliente_actividad` (
-  `idCliente` int(11) DEFAULT NULL,
-  `idActividad` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `curso` (
+  `CUR_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CUR_NOMBRE` varchar(45) DEFAULT NULL,
+  `CUR_DESCRIPCION` varchar(45) DEFAULT NULL,
+  `CUR_FECHA_DESDE` date DEFAULT NULL,
+  `CUR_FECHA_HASTA` date DEFAULT NULL,
+  `CUR_PRECIO` float DEFAULT NULL,
+  `CUR_CANTIDAD_CLASES` int(11) DEFAULT NULL,
+  `CUR_PRO_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CUR_ID`),
+  KEY `CUR_PRO_FK_idx` (`CUR_PRO_ID`),
+  CONSTRAINT `CUR_PRO_FK` FOREIGN KEY (`CUR_PRO_ID`) REFERENCES `profesor` (`PRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cliente_actividad`
+-- Dumping data for table `curso`
 --
 
-LOCK TABLES `cliente_actividad` WRITE;
-/*!40000 ALTER TABLE `cliente_actividad` DISABLE KEYS */;
-INSERT INTO `cliente_actividad` VALUES (27246420,2147483647),(28269438,2147483647),(28272116,2147483647),(28368186,2147483647),(28425945,2147483647),(28731279,2147483647),(28759554,2147483647),(28850110,2147483647),(28853338,2147483647),(29252501,2147483647),(29254482,2147483647),(29606295,2147483647),(30971857,2147483647),(31054656,2147483647),(31218151,2147483647),(31221633,2147483647),(31245079,2147483647),(31245079,2147483647),(31355739,2147483647),(31647176,2147483647),(31647176,2147483647),(32189787,2147483647),(32189787,2147483647),(32540544,2147483647),(32848296,2147483647),(33201283,2147483647),(33333310,2147483647),(33333311,2147483647),(33333312,2147483647),(33333313,2147483647),(33333314,2147483647),(33333315,2147483647),(33333322,2147483647),(33333322,2147483647),(33333333,2147483647),(33333334,2147483647),(33333335,2147483647),(33333336,2147483647),(33333337,2147483647),(33333338,2147483647),(33333339,2147483647),(33333355,2147483647),(33333366,2147483647),(33750204,2147483647),(34131735,2147483647),(38645530,2147483647);
-/*!40000 ALTER TABLE `cliente_actividad` ENABLE KEYS */;
+LOCK TABLES `curso` WRITE;
+/*!40000 ALTER TABLE `curso` DISABLE KEYS */;
+INSERT INTO `curso` VALUES (1,'Primigestas','Curso para mamás teniendo su primer embarazo.',NULL,NULL,3500,8,1);
+/*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -359,29 +388,59 @@ INSERT INTO `profesor` VALUES (1,18304900,'Natalia Diaz','6714437','natalegym@gm
 UNLOCK TABLES;
 
 --
--- Table structure for table `subtipo_actividad`
+-- Table structure for table `rol`
 --
 
-DROP TABLE IF EXISTS `subtipo_actividad`;
+DROP TABLE IF EXISTS `rol`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `subtipo_actividad` (
-  `STACT_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `STACT_NOMBRE` varchar(37) DEFAULT NULL,
-  `STACT_BORRADA` int(11) DEFAULT NULL,
-  `STACT_CREDITOS` int(11) DEFAULT NULL,
-  PRIMARY KEY (`STACT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `rol` (
+  `ROL_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ROL_NOMBRE` varchar(45) DEFAULT NULL,
+  `ROL_DESCRIPCION` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ROL_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `subtipo_actividad`
+-- Dumping data for table `rol`
 --
 
-LOCK TABLES `subtipo_actividad` WRITE;
-/*!40000 ALTER TABLE `subtipo_actividad` DISABLE KEYS */;
-INSERT INTO `subtipo_actividad` VALUES (1,'Primigestas',0,8),(2,'Secundigestas',0,8),(3,'Recién Nacidos',0,1),(4,'Primeros Auxilios y Reanimación',0,1),(5,'Masaje Infantil',0,1),(6,'Lactancia',0,1),(7,'Gimnasia para embarazadas (1xSem)',0,4),(8,'Baby Fitness (1xSem)',0,4),(9,'Pilates MAT (1xSem)',0,4),(10,'Gimnasia para embarazadas (2xSem)',0,8),(11,'Baby Fitness (2xSem)',0,8),(12,'Pilates MAT (2xSem)',0,8),(13,'Gimnasia para embarazadas (3xSem)',0,12),(14,'Baby Fitness (3xSem)',0,12),(15,'Pilates MAT (3xSem)',0,12),(16,'Gimnasia para embarazadas (PaseLibre)',0,20),(17,'Baby Fitness (PaseLibre)',0,20),(18,'Pilates MAT (PaseLibre)',0,20),(19,'Zumba',0,12);
-/*!40000 ALTER TABLE `subtipo_actividad` ENABLE KEYS */;
+LOCK TABLES `rol` WRITE;
+/*!40000 ALTER TABLE `rol` DISABLE KEYS */;
+INSERT INTO `rol` VALUES (1,'ADMINISTRADOR','Control total');
+/*!40000 ALTER TABLE `rol` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `taller`
+--
+
+DROP TABLE IF EXISTS `taller`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `taller` (
+  `TA_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TA_NOMBRE` varchar(45) DEFAULT NULL,
+  `TA_DESCRIPCION` varchar(250) DEFAULT NULL,
+  `TA_PRECIO` float DEFAULT NULL,
+  `TA_FECHA` datetime DEFAULT NULL,
+  `TA_ACTIVO` int(11) DEFAULT NULL,
+  `TA_PRO_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`TA_ID`),
+  KEY `TA_PRO_FK_idx` (`TA_PRO_ID`),
+  CONSTRAINT `TA_PRO_FK` FOREIGN KEY (`TA_PRO_ID`) REFERENCES `profesor` (`PRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `taller`
+--
+
+LOCK TABLES `taller` WRITE;
+/*!40000 ALTER TABLE `taller` DISABLE KEYS */;
+INSERT INTO `taller` VALUES (1,'Lactancia','Para que las madres aprendar a amamantar.',1500,NULL,NULL,1);
+/*!40000 ALTER TABLE `taller` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -409,27 +468,32 @@ INSERT INTO `tarjeta` VALUES (0,'NINGUNA',0),(2147483647,'MasterCard',0),(214748
 UNLOCK TABLES;
 
 --
--- Table structure for table `tipo_actividad`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `tipo_actividad`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipo_actividad` (
-  `TACT_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `TACT_NOMBRE` varchar(35) DEFAULT NULL,
-  PRIMARY KEY (`TACT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `usuario` (
+  `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(45) DEFAULT NULL,
+  `USER_EMAIL` varchar(45) DEFAULT NULL,
+  `USER_FECHA_REGISTRO` datetime DEFAULT NULL,
+  `USER_ROL` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`),
+  KEY `USR_ROL_FK_idx` (`USER_ROL`),
+  CONSTRAINT `USR_ROL_FK` FOREIGN KEY (`USER_ROL`) REFERENCES `rol` (`ROL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tipo_actividad`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `tipo_actividad` WRITE;
-/*!40000 ALTER TABLE `tipo_actividad` DISABLE KEYS */;
-INSERT INTO `tipo_actividad` VALUES (1,'Curso'),(2,'Taller'),(3,'Actividad Física');
-/*!40000 ALTER TABLE `tipo_actividad` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'tpeirotti','tomas.peirotti@gmail.com','2018-06-20 21:13:53',1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -441,4 +505,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-20 20:14:15
+-- Dump completed on 2018-06-23 20:29:14

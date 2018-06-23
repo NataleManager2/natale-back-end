@@ -12,7 +12,7 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="CLI_ID",nullable = false)
-    private long cliId;
+    private Long cliId;
 
     @Column(name="CLI_DNI",nullable = false)
     private Long cliDni;
@@ -29,13 +29,14 @@ public class Cliente implements Serializable {
     @Column(name="CLI_BORRADO")
     private Boolean cliBorrado;
 
+    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
     @Column(name="CLI_FPP")
     private Date cliFpp;
 
+    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
     @Column(name="CLI_FUM")
     private Date cliFum;
 
-    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="CLI_OBRASOCIAL")
     private ObraSocial cliObraSocial;
