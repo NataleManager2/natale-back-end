@@ -1,56 +1,59 @@
 package com.natale.nataleManager.service.impl;
 
-import com.natale.nataleManager.model.Curso;
+import com.natale.nataleManager.model.Calendario;
+import com.natale.nataleManager.repository.CalendarioRepository;
 import com.natale.nataleManager.repository.CursoRepository;
+import com.natale.nataleManager.service.CalendarioService;
 import com.natale.nataleManager.service.CursoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
-public class CursoServiceImpl implements CursoService {
+public class CalendarioServiceImpl implements CalendarioService {
 
-    private static final Logger log = LoggerFactory.getLogger(CursoServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(CalendarioServiceImpl.class);
 
-    private final CursoRepository cursoRepository;
+    private final CalendarioRepository calendarioRepository;
     @Autowired
-    public CursoServiceImpl(CursoRepository cursoRepository) {
-        this.cursoRepository = cursoRepository;
+    public CalendarioServiceImpl(CalendarioRepository calendarioRepository) {
+        this.calendarioRepository = calendarioRepository;
     }
 
     @Override
-    public Curso get(Long id) throws Exception {
-        Curso curso = new Curso();
+    public Calendario get(Long id) throws Exception {
+        Calendario calendario = new Calendario();
         try{
-            curso = cursoRepository.findOne(id);
-            log.debug("findOne curso id: "+id+" succesful");
+            calendario = calendarioRepository.findOne(id);
+            log.debug("findOne calendario id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("failed findingOne curso with id: "+id);
+            log.error("failed findingOne calendario with id: "+id);
         }
-        return curso;
+        return calendario;
     }
 
     @Override
-    public Curso insert(Curso curso) throws Exception {
-        return cursoRepository.save(curso);
+    public Calendario insert(Calendario calendario) throws Exception {
+        return calendarioRepository.save(calendario);
     }
 
     @Override
-    public List<Curso> getAll() throws Exception {
-        return cursoRepository.findAllByCurActivo(true);
+    public List<Calendario> getAllByCurId(Long curId) throws Exception {
+        return calendarioRepository.findAllByCalCurso_CurId(curId);
     }
 
     @Override
-    public Curso update(Curso curso) throws Exception {
-        return cursoRepository.save(curso);
+    public Calendario update(Calendario calendario) throws Exception {
+        return calendarioRepository.save(calendario);
     }
 
     @Override
     public void delete(Long id) {
-        cursoRepository.delete(id);
+        calendarioRepository.delete(id);
     }
 
 

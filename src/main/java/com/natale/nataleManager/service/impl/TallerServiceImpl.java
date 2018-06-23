@@ -1,56 +1,57 @@
 package com.natale.nataleManager.service.impl;
 
-import com.natale.nataleManager.repository.ClienteRepository;
-import com.natale.nataleManager.model.Cliente;
-import com.natale.nataleManager.service.ClienteService;
+import com.natale.nataleManager.model.Taller;
+import com.natale.nataleManager.repository.TallerRepository;
+import com.natale.nataleManager.service.TallerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
-public class ClienteServiceImpl implements ClienteService {
+public class TallerServiceImpl implements TallerService {
 
-    private static final Logger log = LoggerFactory.getLogger(ClienteServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(TallerServiceImpl.class);
 
-    private final ClienteRepository clienteRepository;
+    private final TallerRepository tallerRepository;
     @Autowired
-    public ClienteServiceImpl(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
+    public TallerServiceImpl(TallerRepository tallerRepository) {
+        this.tallerRepository = tallerRepository;
     }
 
     @Override
-    public Cliente get(Long id) throws Exception {
-        Cliente cliente = new Cliente();
+    public Taller get(Long id) throws Exception {
+        Taller taller = new Taller();
         try{
-            cliente = clienteRepository.findOne(id);
-            log.debug("findOne client id: "+id+" succesful");
+            taller = tallerRepository.findOne(id);
+            log.debug("findOne taller id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("failed findingOne client with id: "+id);
+            log.error("failed findingOne taller with id: "+id);
         }
-        return cliente;
+        return taller;
     }
 
     @Override
-    public Cliente insert(Cliente cliente) throws Exception {
-        return clienteRepository.save(cliente);
+    public Taller insert(Taller taller) throws Exception {
+        return tallerRepository.save(taller);
     }
 
     @Override
-    public List<Cliente> getAll() throws Exception {
-        return clienteRepository.findAllByCliBorrado(false);
+    public List<Taller> getAll() throws Exception {
+        return tallerRepository.findAllByTaActivo(true);
     }
 
     @Override
-    public Cliente update(Cliente cliente) throws Exception {
-        return clienteRepository.save(cliente);
+    public Taller update(Taller taller) throws Exception {
+        return tallerRepository.save(taller);
     }
 
     @Override
     public void delete(Long id) {
-        clienteRepository.delete(id);
+        tallerRepository.delete(id);
     }
 
 

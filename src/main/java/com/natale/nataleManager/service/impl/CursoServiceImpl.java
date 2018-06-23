@@ -1,57 +1,56 @@
 package com.natale.nataleManager.service.impl;
 
-import com.natale.nataleManager.model.Taller;
-import com.natale.nataleManager.repository.TallerRepository;
-import com.natale.nataleManager.service.TallerService;
+import com.natale.nataleManager.model.Curso;
+import com.natale.nataleManager.repository.CursoRepository;
+import com.natale.nataleManager.service.CursoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
-public class TallerServiceImpl implements TallerService {
+public class CursoServiceImpl implements CursoService {
 
-    private static final Logger log = LoggerFactory.getLogger(TallerServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(CursoServiceImpl.class);
 
-    private final TallerRepository tallerRepository;
+    private final CursoRepository cursoRepository;
     @Autowired
-    public TallerServiceImpl(TallerRepository tallerRepository) {
-        this.tallerRepository = tallerRepository;
+    public CursoServiceImpl(CursoRepository cursoRepository) {
+        this.cursoRepository = cursoRepository;
     }
 
     @Override
-    public Taller get(Long id) throws Exception {
-        Taller taller = new Taller();
+    public Curso get(Long id) throws Exception {
+        Curso curso = new Curso();
         try{
-            taller = tallerRepository.findOne(id);
-            log.debug("findOne taller id: "+id+" succesful");
+            curso = cursoRepository.findOne(id);
+            log.debug("findOne curso id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("failed findingOne taller with id: "+id);
+            log.error("failed findingOne curso with id: "+id);
         }
-        return taller;
+        return curso;
     }
 
     @Override
-    public Taller insert(Taller taller) throws Exception {
-        return tallerRepository.save(taller);
+    public Curso insert(Curso curso) throws Exception {
+        return cursoRepository.save(curso);
     }
 
     @Override
-    public List<Taller> getAll() throws Exception {
-        return tallerRepository.findAllByTaActivo(true);
+    public List<Curso> getAll() throws Exception {
+        return cursoRepository.findAllByCurActivo(true);
     }
 
     @Override
-    public Taller update(Taller taller) throws Exception {
-        return tallerRepository.save(taller);
+    public Curso update(Curso curso) throws Exception {
+        return cursoRepository.save(curso);
     }
 
     @Override
     public void delete(Long id) {
-        tallerRepository.delete(id);
+        cursoRepository.delete(id);
     }
 
 
