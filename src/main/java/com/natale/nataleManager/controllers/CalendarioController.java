@@ -2,7 +2,6 @@ package com.natale.nataleManager.controllers;
 
 import com.natale.nataleManager.model.Calendario;
 import com.natale.nataleManager.service.CalendarioService;
-import com.natale.nataleManager.service.CursoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Date;
 
 @Entity
 @Table(name="CALENDARIO")
-public class Calendario implements Serializable {
+public class Calendario  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +21,7 @@ public class Calendario implements Serializable {
     @Column(name = "CAL_FECHA")
     private Date calFecha;
 
+    @Lob
     @Column(name = "CAL_MATERIAL")
     private byte[] calMaterial;
 
@@ -45,19 +48,19 @@ public class Calendario implements Serializable {
         this.calFecha = calFecha;
     }
 
-    public byte[] getCalMaterial() {
-        return calMaterial;
-    }
-
-    public void setCalMaterial(byte[] calMaterial) {
-        this.calMaterial = calMaterial;
-    }
-
     public Curso getCalCurso() {
         return calCurso;
     }
 
     public void setCalCurso(Curso calCurso) {
         this.calCurso = calCurso;
+    }
+
+    public byte[] getCalMaterial() {
+        return calMaterial;
+    }
+
+    public void setCalMaterial(byte[] calMaterial) {
+        this.calMaterial = calMaterial;
     }
 }
