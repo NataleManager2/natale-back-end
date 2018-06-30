@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.lang.annotation.IncompleteAnnotationException;
 import java.util.List;
 
 @Component
@@ -15,6 +17,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     private static final Logger log = LoggerFactory.getLogger(InscripcionServiceImpl.class);
 
     private final InscripcionRepository inscripcionRepository;
+
     @Autowired
     public InscripcionServiceImpl(InscripcionRepository inscripcionRepository) {
         this.inscripcionRepository = inscripcionRepository;
@@ -23,12 +26,12 @@ public class InscripcionServiceImpl implements InscripcionService {
     @Override
     public Inscripcion get(Long id) throws Exception {
         Inscripcion inscripcion = new Inscripcion();
-        try{
+        try {
             inscripcion = inscripcionRepository.findOne(id);
-            log.debug("findOne inscripcion id: "+id+" succesful");
+            log.debug("findOne inscripcion id: " + id + " succesful");
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("failed findingOne inscripcion with id: "+id);
+            log.error("failed findingOne inscripcion with id: " + id);
         }
         return inscripcion;
     }
@@ -45,12 +48,21 @@ public class InscripcionServiceImpl implements InscripcionService {
 
     @Override
     public Inscripcion update(Inscripcion inscripcion) throws Exception {
-        return inscripcionRepository.save(inscripcion);
+        if (inscripcion.getNullAtributes().size() == 0) {
+            return inscripcionRepository.save(inscripcion);
+        }
+        log.error("La inscripcion no se actualizo porque tenia los siguientes atributos nulos: "+ inscripcion.getNullAtributes());
+        return inscripcion;
     }
 
     @Override
     public void delete(Long id) {
         inscripcionRepository.delete(id);
+    }
+
+    @Override
+    public List<Inscripcion> getInscripcionesPendientes(Boolean p) throws Exception {
+        return inscripcionRepository.findAllByIsPendienteAprobacion(p);
     }
 
 

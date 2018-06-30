@@ -2,6 +2,9 @@ package com.natale.nataleManager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="OBRA_SOCIAL")
@@ -43,5 +46,15 @@ public class ObraSocial implements Serializable {
 
     public void setOsCentroAtencion(String osCentroAtencion) {
         this.osCentroAtencion = osCentroAtencion;
+    }
+
+    public List<String> getNullAtributes() throws IllegalAccessException {
+        List<String> atributosNulos = new ArrayList<>();
+        for (Field f : getClass().getDeclaredFields()) {
+            if (f.get(this) == null) {
+                atributosNulos.add(f.getName());
+            }
+        }
+        return atributosNulos;
     }
 }

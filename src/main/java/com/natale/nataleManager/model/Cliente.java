@@ -3,7 +3,10 @@ package com.natale.nataleManager.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="CLIENTE")
@@ -151,5 +154,15 @@ public class Cliente implements Serializable {
 
     public void setCliFechaMod(Date cliFechaMod) {
         this.cliFechaMod = cliFechaMod;
+    }
+
+    public List<String> getNullAtributes() throws IllegalAccessException {
+        List<String> atributosNulos = new ArrayList<>();
+        for (Field f : getClass().getDeclaredFields()) {
+            if (f.get(this) == null) {
+                atributosNulos.add(f.getName());
+            }
+        }
+        return atributosNulos;
     }
 }

@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="TALLER")
@@ -92,5 +95,15 @@ public class Taller implements Serializable {
 
     public void setCurProfesor(Profesor curProfesor) {
         this.curProfesor = curProfesor;
+    }
+
+    public List<String> getNullAtributes() throws IllegalAccessException {
+        List<String> atributosNulos = new ArrayList<>();
+        for (Field f : getClass().getDeclaredFields()) {
+            if (f.get(this) == null) {
+                atributosNulos.add(f.getName());
+            }
+        }
+        return atributosNulos;
     }
 }

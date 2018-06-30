@@ -46,7 +46,11 @@ public class TallerServiceImpl implements TallerService {
 
     @Override
     public Taller update(Taller taller) throws Exception {
-        return tallerRepository.save(taller);
+        if (taller.getNullAtributes().size() == 0) {
+            return tallerRepository.save(taller);
+        }
+        log.error("El taller no se actualizo porque tenia los siguientes atributos nulos: "+ taller.getNullAtributes());
+        return taller;
     }
 
     @Override

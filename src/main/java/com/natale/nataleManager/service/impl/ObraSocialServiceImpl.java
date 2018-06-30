@@ -45,7 +45,11 @@ public class ObraSocialServiceImpl implements ObraSocialService {
 
     @Override
     public ObraSocial update(ObraSocial obraSocial) throws Exception {
-        return obraSocialRepository.save(obraSocial);
+        if (obraSocial.getNullAtributes().size() == 0) {
+            return obraSocialRepository.save(obraSocial);
+        }
+        log.error("La obraSocial no se actualizo porque tenia los siguientes atributos nulos: "+ obraSocial.getNullAtributes());
+        return obraSocial;
     }
 
     @Override

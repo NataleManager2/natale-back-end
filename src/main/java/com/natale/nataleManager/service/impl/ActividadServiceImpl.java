@@ -50,7 +50,11 @@ public class ActividadServiceImpl implements ActividadService {
 
     @Override
     public Actividad update(Actividad act) throws Exception {
-        return actividadRepository.save(act);
+        if (act.getNullAtributes().size() == 0) {
+            return actividadRepository.save(act);
+        }
+        log.error("La Actividad no se actualizo porque tenia los siguientes atributos nulos: "+ act.getNullAtributes());
+        return act;
     }
 
     @Override

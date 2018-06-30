@@ -45,7 +45,11 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente update(Cliente cliente) throws Exception {
-        return clienteRepository.save(cliente);
+        if (cliente.getNullAtributes().size() == 0) {
+            return clienteRepository.save(cliente);
+        }
+        log.error("El cliente no se actualizo porque tenia los siguientes atributos nulos: "+ cliente.getNullAtributes());
+        return cliente;
     }
 
     @Override

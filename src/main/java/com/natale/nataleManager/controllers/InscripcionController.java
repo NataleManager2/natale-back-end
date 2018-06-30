@@ -27,13 +27,19 @@ public class InscripcionController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todos los clientes activos.")
+    @ApiOperation(value = "Obtiene un listado de todos las inscripciones.")
     public List<Inscripcion> getAll() throws Exception {
         return inscripcionService.getAll();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/listado/pendientes")
+    @ApiOperation(value = "Obtiene un listado de todos las inscripciones pendientes o no, segun se exprese en el parametro.")
+    public List<Inscripcion> getInscripcionesPendientes(@RequestParam("pendientes") String p) throws Exception {
+        return inscripcionService.getInscripcionesPendientes(p.equals("1")||p.equals("true"));
+    }
+
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo inscripcion")
+    @ApiOperation(value = "Crea una nueva inscripcion")
     public Inscripcion insert(@RequestBody Inscripcion inscripcion) throws Exception {
         return inscripcionService.insert(inscripcion);
     }

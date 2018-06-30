@@ -48,7 +48,11 @@ public class CalendarioServiceImpl implements CalendarioService {
 
     @Override
     public Calendario update(Calendario calendario) throws Exception {
-        return calendarioRepository.save(calendario);
+        if (calendario.getNullAtributes().size() == 0) {
+            return calendarioRepository.save(calendario);
+        }
+        log.error("El calendario no se actualizo porque tenia los siguientes atributos nulos: "+ calendario.getNullAtributes());
+        return calendario;
     }
 
     @Override

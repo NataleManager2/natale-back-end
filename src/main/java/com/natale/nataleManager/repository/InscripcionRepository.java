@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface InscripcionRepository extends CrudRepository<Inscripcion, Long> {
     List<Inscripcion> findAll();
+    List<Inscripcion> findAllByIsPendienteAprobacion(Boolean bool);
 }

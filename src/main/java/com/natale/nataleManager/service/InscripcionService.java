@@ -11,4 +11,5 @@ public interface InscripcionService {
     List<Inscripcion> getAll() throws Exception;
     Inscripcion update(Inscripcion ins) throws Exception;
     void delete(Long id) throws Exception;
+    List<Inscripcion> getInscripcionesPendientes(Boolean p) throws Exception;
 }

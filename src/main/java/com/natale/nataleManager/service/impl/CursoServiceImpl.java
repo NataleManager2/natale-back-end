@@ -45,7 +45,11 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso update(Curso curso) throws Exception {
-        return cursoRepository.save(curso);
+        if (curso.getNullAtributes().size() == 0) {
+            return cursoRepository.save(curso);
+        }
+        log.error("El curso no se actualizo porque tenia los siguientes atributos nulos: "+ curso.getNullAtributes());
+        return curso;
     }
 
     @Override

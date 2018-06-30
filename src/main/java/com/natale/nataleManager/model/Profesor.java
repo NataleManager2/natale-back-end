@@ -2,6 +2,9 @@ package com.natale.nataleManager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="PROFESOR")
@@ -76,5 +79,15 @@ public class Profesor implements Serializable {
 
     public void setProBorrado(int proBorrado) {
         this.proBorrado = proBorrado;
+    }
+
+    public List<String> getNullAtributes() throws IllegalAccessException {
+        List<String> atributosNulos = new ArrayList<>();
+        for (Field f : getClass().getDeclaredFields()) {
+            if (f.get(this) == null) {
+                atributosNulos.add(f.getName());
+            }
+        }
+        return atributosNulos;
     }
 }
