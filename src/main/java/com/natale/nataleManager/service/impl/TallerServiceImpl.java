@@ -1,6 +1,7 @@
 package com.natale.nataleManager.service.impl;
 
 import com.natale.nataleManager.model.Taller;
+import com.natale.nataleManager.model.enums.EstadoActividad;
 import com.natale.nataleManager.repository.TallerRepository;
 import com.natale.nataleManager.service.TallerService;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ public class TallerServiceImpl implements TallerService {
     }
 
     @Override
-    public Taller get(Long id) throws Exception {
+    public Taller get(Long id) {
         Taller taller = new Taller();
         try{
             taller = tallerRepository.findOne(id);
@@ -35,21 +36,25 @@ public class TallerServiceImpl implements TallerService {
     }
 
     @Override
-    public Taller insert(Taller taller) throws Exception {
+    public Taller insert(Taller taller) {
         return tallerRepository.save(taller);
     }
 
     @Override
-    public List<Taller> getAll() throws Exception {
-        return tallerRepository.findAllByTaActivo(true);
+    public List<Taller> getAll() {
+        return tallerRepository.findAllByEstado(EstadoActividad.EN_CURSO);
     }
 
     @Override
-    public Taller update(Taller taller) throws Exception {
-        if (taller.getNullAtributes().size() == 0) {
-            return tallerRepository.save(taller);
+    public Taller update(Taller taller)  {
+        try {
+            if (taller.getNullAtributes().size() == 0) {
+                return tallerRepository.save(taller);
+            }
+        } catch (IllegalAccessException e) {
+            log.error("El taller no se actualizo porque tenia atributos nulos: "+ e);
         }
-        log.error("El taller no se actualizo porque tenia los siguientes atributos nulos: "+ taller.getNullAtributes());
+
         return taller;
     }
 

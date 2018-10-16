@@ -1,5 +1,7 @@
 package com.natale.nataleManager.model;
 
+import com.natale.nataleManager.model.enums.EstadoProfesor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -12,73 +14,73 @@ public class Profesor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="PRO_ID", nullable = false)
-    private Long proId;
+    @Column(name="ID", nullable = false)
+    private Long id;
 
-    @Column(name="PRO_DNI")
-    private Long proDni;
+    @Column(name="DNI")
+    private Long dni;
 
-    @Column(name="PRO_NOMBRE", nullable = false)
-    private String proNombre;
+    @Column(name="NOMBRE", nullable = false)
+    private String nombre;
 
-    @Column(name="PRO_TEL")
-    private String proTel;
+    @Column(name="TELEFONO")
+    private String telefono;
 
-    @Column(name="PRO_EMAIL")
-    private String proEmail;
+    @Column(name="EMAIL")
+    private String email;
 
-    @Column(name="PRO_BORRADO")
-    private int proBorrado;
+    @Column(name="ESTADO")
+    private EstadoProfesor estado;
 
     public Profesor() {
     }
 
-    public Long getProId() {
-        return proId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProId(Long proId) {
-        this.proId = proId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getProDni() {
-        return proDni;
+    public Long getDni() {
+        return dni;
     }
 
-    public void setProDni(Long proDni) {
-        this.proDni = proDni;
+    public void setDni(Long dni) {
+        this.dni = dni;
     }
 
-    public String getProNombre() {
-        return proNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setProNombre(String proNombre) {
-        this.proNombre = proNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getProTel() {
-        return proTel;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setProTel(String proTel) {
-        this.proTel = proTel;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getProEmail() {
-        return proEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setProEmail(String proEmail) {
-        this.proEmail = proEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getProBorrado() {
-        return proBorrado;
+    public EstadoProfesor getEstado() {
+        return estado;
     }
 
-    public void setProBorrado(int proBorrado) {
-        this.proBorrado = proBorrado;
+    public void setEstado(EstadoProfesor estado) {
+        this.estado = estado;
     }
 
     public List<String> getNullAtributes() throws IllegalAccessException {

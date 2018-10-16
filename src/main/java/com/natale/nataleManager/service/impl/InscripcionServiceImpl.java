@@ -1,6 +1,7 @@
 package com.natale.nataleManager.service.impl;
 
 import com.natale.nataleManager.model.Inscripcion;
+import com.natale.nataleManager.model.enums.EstadoInscripcion;
 import com.natale.nataleManager.repository.InscripcionRepository;
 import com.natale.nataleManager.service.InscripcionService;
 import org.slf4j.Logger;
@@ -8,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.IncompleteAnnotationException;
 import java.util.List;
 
 @Component
@@ -24,7 +24,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
-    public Inscripcion get(Long id) throws Exception {
+    public Inscripcion get(Long id) {
         Inscripcion inscripcion = new Inscripcion();
         try {
             inscripcion = inscripcionRepository.findOne(id);
@@ -37,21 +37,25 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
-    public Inscripcion insert(Inscripcion inscripcion) throws Exception {
+    public Inscripcion insert(Inscripcion inscripcion) {
         return inscripcionRepository.save(inscripcion);
     }
 
     @Override
-    public List<Inscripcion> getAll() throws Exception {
+    public List<Inscripcion> getAll() {
         return inscripcionRepository.findAll();
     }
 
     @Override
-    public Inscripcion update(Inscripcion inscripcion) throws Exception {
-        if (inscripcion.getNullAtributes().size() == 0) {
-            return inscripcionRepository.save(inscripcion);
+    public Inscripcion update(Inscripcion inscripcion) {
+        try {
+            if (inscripcion.getNullAtributes().size() == 0) {
+                return inscripcionRepository.save(inscripcion);
+            }
+        } catch (IllegalAccessException e) {
+            log.error("La inscripcion no se actualizo porque tenia atributos nulos: "+ e);
         }
-        log.error("La inscripcion no se actualizo porque tenia los siguientes atributos nulos: "+ inscripcion.getNullAtributes());
+
         return inscripcion;
     }
 
@@ -61,8 +65,8 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
-    public List<Inscripcion> getInscripcionesPendientes(Boolean p) throws Exception {
-        return inscripcionRepository.findAllByIsPendienteAprobacion(p);
+    public List<Inscripcion> getInscripcionesByEstado(EstadoInscripcion estadoInscripcion) {
+        return inscripcionRepository.findAllByEstado(estadoInscripcion);
     }
 
 

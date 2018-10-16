@@ -6,11 +6,11 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/natale
     username: root
-    password: root
+    password: tp38330090
 
   jpa:
      hibernate:
-       ddl-auto: none
+       ddl-auto: create-drop
        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
      show-sql: true
      properties:

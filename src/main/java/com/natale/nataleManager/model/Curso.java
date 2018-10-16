@@ -1,5 +1,7 @@
 package com.natale.nataleManager.model;
 
+import com.natale.nataleManager.model.enums.EstadoActividad;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -12,74 +14,74 @@ public class Curso implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CUR_ID")
-    private Long curId;
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name = "CUR_DESCRIPCION")
-    private String curDescripcion;
+    @Column(name = "DESCRIPCION")
+    private String descripcion;
 
-    @Column(name = "CUR_PRECIO")
-    private Float curPrecio;
+    @Column(name = "PRECIO")
+    private Float precio;
 
-    @Column(name = "CUR_CANTIDAD_CLASES")
-    private int curCantidadClases;
+    @Column(name = "CANTIDAD_CLASES")
+    private int cantidadClases;
 
-    @Column(name = "CUR_ACTIVO")
-    private int curActivo;
+    @Column(name = "ESTADO")
+    private EstadoActividad estado;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CUR_PRO_ID")
-    private Profesor curProfesor;
+    @JoinColumn(name = "PROFESOR")
+    private Profesor profesor;
 
     public Curso() {
     }
 
-    public Long getCurId() {
-        return curId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCurId(Long curId) {
-        this.curId = curId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getCurDescripcion() {
-        return curDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setCurDescripcion(String curDescripcion) {
-        this.curDescripcion = curDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Float getCurPrecio() {
-        return curPrecio;
+    public Float getPrecio() {
+        return precio;
     }
 
-    public void setCurPrecio(Float curPrecio) {
-        this.curPrecio = curPrecio;
+    public void setPrecio(Float precio) {
+        this.precio = precio;
     }
 
-    public int getCurCantidadClases() {
-        return curCantidadClases;
+    public int getCantidadClases() {
+        return cantidadClases;
     }
 
-    public void setCurCantidadClases(int curCantidadClases) {
-        this.curCantidadClases = curCantidadClases;
+    public void setCantidadClases(int cantidadClases) {
+        this.cantidadClases = cantidadClases;
     }
 
-    public int getCurActivo() {
-        return curActivo;
+    public EstadoActividad getEstado() {
+        return estado;
     }
 
-    public void setCurActivo(int curActivo) {
-        this.curActivo = curActivo;
+    public void setEstado(EstadoActividad estado) {
+        this.estado = estado;
     }
 
-    public Profesor getCurProfesor() {
-        return curProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setCurProfesor(Profesor curProfesor) {
-        this.curProfesor = curProfesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public List<String> getNullAtributes() throws IllegalAccessException {

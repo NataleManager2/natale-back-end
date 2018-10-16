@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,25 +23,25 @@ public class ObraSocialController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Obtiene una Obra Social.")
-    public ObraSocial get(@RequestParam("id") Long id) throws Exception {
+    public ObraSocial get(@RequestParam("id") Long id) {
         return obraSocialService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todas las obras sociales.")
-    public List<ObraSocial> getAll() throws Exception {
+    public List<ObraSocial> getAll() {
         return obraSocialService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
     @ApiOperation(value = "Crea un nuevo obraSocial")
-    public ObraSocial insert(@RequestBody ObraSocial obraSocial) throws Exception {
+    public ObraSocial insert(@RequestBody ObraSocial obraSocial) {
         return obraSocialService.insert(obraSocial);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
     @ApiOperation(value = "Actualiza un obraSocial")
-    public ObraSocial update(@RequestBody ObraSocial obraSocial) throws Exception {
+    public ObraSocial update(@RequestBody ObraSocial obraSocial) {
         return obraSocialService.update(obraSocial);
     }
 

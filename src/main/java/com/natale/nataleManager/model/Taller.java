@@ -1,6 +1,7 @@
 package com.natale.nataleManager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.natale.nataleManager.model.enums.EstadoActividad;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,86 +16,86 @@ public class Taller implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "TA_ID")
-    private Long taId;
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name = "TA_NOMBRE")
-    private String taNombre;
+    @Column(name = "NOMBRE")
+    private String nombre;
 
-    @Column(name = "TA_DESCRIPCION")
-    private String taDescripcion;
+    @Column(name = "DESCRIPCION")
+    private String descripcion;
 
-    @Column(name = "TA_PRECIO")
-    private Float taPrecio;
+    @Column(name = "PRECIO")
+    private Float precio;
 
     @JsonFormat(timezone = "GMT-3", pattern = "dd/MM/yyyy hh:mm")
-    @Column(name = "TA_FECHA")
-    private Date taFecha;
+    @Column(name = "FECHA")
+    private Date fecha;
 
-    @Column(name = "TA_ACTIVO")
-    private int taActivo;
+    @Column(name = "ESTADO")
+    private EstadoActividad estado;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "TA_PRO_ID")
-    private Profesor curProfesor;
+    @JoinColumn(name = "PROFESOR")
+    private Profesor profesor;
 
     public Taller() {
     }
 
-    public Long getTaId() {
-        return taId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTaId(Long taId) {
-        this.taId = taId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getTaNombre() {
-        return taNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTaNombre(String taNombre) {
-        this.taNombre = taNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getTaDescripcion() {
-        return taDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setTaDescripcion(String taDescripcion) {
-        this.taDescripcion = taDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Float getTaPrecio() {
-        return taPrecio;
+    public Float getPrecio() {
+        return precio;
     }
 
-    public void setTaPrecio(Float taPrecio) {
-        this.taPrecio = taPrecio;
+    public void setPrecio(Float precio) {
+        this.precio = precio;
     }
 
-    public Date getTaFecha() {
-        return taFecha;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setTaFecha(Date taFecha) {
-        this.taFecha = taFecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public int getTaActivo() {
-        return taActivo;
+    public EstadoActividad getEstado() {
+        return estado;
     }
 
-    public void setTaActivo(int taActivo) {
-        this.taActivo = taActivo;
+    public void setEstado(EstadoActividad estado) {
+        this.estado = estado;
     }
 
-    public Profesor getCurProfesor() {
-        return curProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setCurProfesor(Profesor curProfesor) {
-        this.curProfesor = curProfesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public List<String> getNullAtributes() throws IllegalAccessException {

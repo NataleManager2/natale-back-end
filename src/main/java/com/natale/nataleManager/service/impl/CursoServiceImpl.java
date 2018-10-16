@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.List;
 
 @Component
 public class CursoServiceImpl implements CursoService {
@@ -21,7 +20,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
-    public Curso get(Long id) throws Exception {
+    public Curso get(Long id)  {
         Curso curso = new Curso();
         try{
             curso = cursoRepository.findOne(id);
@@ -34,21 +33,25 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
-    public Curso insert(Curso curso) throws Exception {
+    public Curso insert(Curso curso) {
         return cursoRepository.save(curso);
     }
 
     @Override
-    public List<Curso> getAll() throws Exception {
-        return cursoRepository.findAllByCurActivo(true);
+    public Iterable<Curso> getAll() {
+        return cursoRepository.findAll();
     }
 
     @Override
-    public Curso update(Curso curso) throws Exception {
-        if (curso.getNullAtributes().size() == 0) {
-            return cursoRepository.save(curso);
+    public Curso update(Curso curso) {
+        try {
+            if (curso.getNullAtributes().size() == 0) {
+                return cursoRepository.save(curso);
+            }
+        } catch (IllegalAccessException e) {
+            log.error("El curso no se actualizo porque tenia atributos nulos: "+e);
         }
-        log.error("El curso no se actualizo porque tenia los siguientes atributos nulos: "+ curso.getNullAtributes());
+
         return curso;
     }
 

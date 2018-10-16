@@ -1,11 +1,9 @@
 package com.natale.nataleManager.service.impl;
 
 import com.natale.nataleManager.model.Actividad;
-import com.natale.nataleManager.model.Cliente;
+import com.natale.nataleManager.model.enums.EstadoActividad;
 import com.natale.nataleManager.repository.ActividadRepository;
-import com.natale.nataleManager.repository.ClienteRepository;
 import com.natale.nataleManager.service.ActividadService;
-import com.natale.nataleManager.service.ClienteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ public class ActividadServiceImpl implements ActividadService {
     }
 
     @Override
-    public Actividad get(Long id) throws Exception {
+    public Actividad get(Long id) {
         Actividad act = new Actividad();
         try{
             act = actividadRepository.findOne(id);
@@ -39,26 +37,30 @@ public class ActividadServiceImpl implements ActividadService {
     }
 
     @Override
-    public Actividad insert(Actividad act) throws Exception {
+    public Actividad insert(Actividad act) {
         return actividadRepository.save(act);
     }
 
     @Override
-    public List<Actividad> getAll() throws Exception {
-        return actividadRepository.findAllByActBorrada(false);
+    public List<Actividad> getAll() {
+        return actividadRepository.findAllByEstado(EstadoActividad.EN_CURSO);
     }
 
     @Override
-    public Actividad update(Actividad act) throws Exception {
-        if (act.getNullAtributes().size() == 0) {
-            return actividadRepository.save(act);
+    public Actividad update(Actividad act) {
+        try {
+            if (act.getNullAtributes().size() == 0) {
+                return actividadRepository.save(act);
+            }
+        } catch (IllegalAccessException e) {
+            log.error("La Actividad no se actualizo porque tenia atributos nulos: "+ e);
         }
-        log.error("La Actividad no se actualizo porque tenia los siguientes atributos nulos: "+ act.getNullAtributes());
+
         return act;
     }
 
     @Override
-    public void delete(Long id) throws Exception {
+    public void delete(Long id) {
         actividadRepository.delete(id);
     }
 

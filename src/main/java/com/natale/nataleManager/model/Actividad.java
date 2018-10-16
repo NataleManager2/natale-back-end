@@ -1,6 +1,8 @@
 package com.natale.nataleManager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.natale.nataleManager.model.enums.EstadoActividad;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -14,98 +16,98 @@ public class Actividad implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="ACT_ID")
-    private Long actId;
+    @Column(name="ID")
+    private Long id;
 
-    @Column(name="ACT_NOMBRE")
-    private String actNombre;
+    @Column(name="NOMBRE")
+    private String nombre;
 
-    @Column(name="ACT_DESCRIPCION")
-    private String actDescripcion;
-
-    @JsonFormat(pattern = "hh:mm")
-    @Column(name="ACT_HORA_DESDE")
-    private Time actHoraDesde;
+    @Column(name="DESCRIPCION")
+    private String descripcion;
 
     @JsonFormat(pattern = "hh:mm")
-    @Column(name="ACT_HORA_HASTA")
-    private Time actHoraHasta;
+    @Column(name="HORA_DESDE")
+    private Time horaDesde;
 
-    @Column(name="ACT_ACTIVA")
-    private int actBorrada;
+    @JsonFormat(pattern = "hh:mm")
+    @Column(name="HORA_HASTA")
+    private Time horaHasta;
 
-    @Column(name="ACT_PRECIO")
-    private Float actPrecio;
+    @Column(name="ESTADO")
+    private EstadoActividad estado;
+
+    @Column(name="PRECIO")
+    private Float precio;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="ACT_PRO_ID")
-    private Profesor actProfesor;
+    @JoinColumn(name="PROFESOR")
+    private Profesor profesor;
 
     public Actividad() {
     }
 
-    public Long getActId() {
-        return actId;
+    public Long getId() {
+        return id;
     }
 
-    public void setActId(Long actId) {
-        this.actId = actId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getActNombre() {
-        return actNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setActNombre(String actNombre) {
-        this.actNombre = actNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getActDescripcion() {
-        return actDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setActDescripcion(String actDescripcion) {
-        this.actDescripcion = actDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Time getActHoraDesde() {
-        return actHoraDesde;
+    public Time getHoraDesde() {
+        return horaDesde;
     }
 
-    public void setActHoraDesde(Time actHoraDesde) {
-        this.actHoraDesde = actHoraDesde;
+    public void setHoraDesde(Time horaDesde) {
+        this.horaDesde = horaDesde;
     }
 
-    public Time getActHoraHasta() {
-        return actHoraHasta;
+    public Time getHoraHasta() {
+        return horaHasta;
     }
 
-    public void setActHoraHasta(Time actHoraHasta) {
-        this.actHoraHasta = actHoraHasta;
+    public void setHoraHasta(Time horaHasta) {
+        this.horaHasta = horaHasta;
     }
 
-    public int getActBorrada() {
-        return actBorrada;
+    public EstadoActividad getEstado() {
+        return estado;
     }
 
-    public void setActBorrada(int actBorrada) {
-        this.actBorrada = actBorrada;
+    public void setEstado(EstadoActividad estado) {
+        this.estado = estado;
     }
 
-    public Float getActPrecio() {
-        return actPrecio;
+    public Float getPrecio() {
+        return precio;
     }
 
-    public void setActPrecio(Float actPrecio) {
-        this.actPrecio = actPrecio;
+    public void setPrecio(Float precio) {
+        this.precio = precio;
     }
 
-    public Profesor getActProfesor() {
-        return actProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setActProfesor(Profesor actProfesor) {
-        this.actProfesor = actProfesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public List<String> getNullAtributes() throws IllegalAccessException {

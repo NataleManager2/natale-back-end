@@ -12,40 +12,40 @@ public class ObraSocial implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="OS_ID")
-    private Long osId;
+    @Column(name="ID")
+    private Long id;
 
-    @Column(name="OS_NOMBRE")
-    private String osNombre;
+    @Column(name="NOMBRE")
+    private String nombre;
 
-    @Column(name="OS_CENTRO_ATENCION")
-    private String osCentroAtencion;
+    @Column(name="CENTRO_ATENCION")
+    private String centroAtencion;
 
     public ObraSocial() {
     }
 
-    public Long getOsId() {
-        return osId;
+    public Long getId() {
+        return id;
     }
 
-    public void setOsId(Long osId) {
-        this.osId = osId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getOsNombre() {
-        return osNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setOsNombre(String osNombre) {
-        this.osNombre = osNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getOsCentroAtencion() {
-        return osCentroAtencion;
+    public String getCentroAtencion() {
+        return centroAtencion;
     }
 
-    public void setOsCentroAtencion(String osCentroAtencion) {
-        this.osCentroAtencion = osCentroAtencion;
+    public void setCentroAtencion(String centroAtencion) {
+        this.centroAtencion = centroAtencion;
     }
 
     public List<String> getNullAtributes() throws IllegalAccessException {
@@ -57,4 +57,5 @@ public class ObraSocial implements Serializable {
         }
         return atributosNulos;
     }
+
 }

@@ -23,25 +23,25 @@ public class CalendarioController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Obtiene un Calendario.")
-    public Calendario get(@RequestParam("id") Long id) throws Exception {
+    public Calendario get(@RequestParam("id") Long id) {
         return calendarioService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todos los calendarios.")
-    public List<Calendario> getAllByCurId(Long curId) throws Exception {
+    public List<Calendario> getAllByCurId(Long curId) {
         return calendarioService.getAllByCurId(curId);
     }
 
     @RequestMapping(method= RequestMethod.POST)
     @ApiOperation(value = "Crea un nuevo Calendario")
-    public Calendario insert(@RequestBody Calendario calendario) throws Exception {
+    public Calendario insert(@RequestBody Calendario calendario) {
         return calendarioService.insert(calendario);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
     @ApiOperation(value = "Actualiza un Calendario")
-    public Calendario update(@RequestBody Calendario calendario) throws Exception {
+    public Calendario update(@RequestBody Calendario calendario) {
         return calendarioService.update(calendario);
     }
 

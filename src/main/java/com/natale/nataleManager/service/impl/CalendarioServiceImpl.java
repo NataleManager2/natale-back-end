@@ -2,9 +2,7 @@ package com.natale.nataleManager.service.impl;
 
 import com.natale.nataleManager.model.Calendario;
 import com.natale.nataleManager.repository.CalendarioRepository;
-import com.natale.nataleManager.repository.CursoRepository;
 import com.natale.nataleManager.service.CalendarioService;
-import com.natale.nataleManager.service.CursoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,7 @@ public class CalendarioServiceImpl implements CalendarioService {
     }
 
     @Override
-    public Calendario get(Long id) throws Exception {
+    public Calendario get(Long id) {
         Calendario calendario = new Calendario();
         try{
             calendario = calendarioRepository.findOne(id);
@@ -37,21 +35,25 @@ public class CalendarioServiceImpl implements CalendarioService {
     }
 
     @Override
-    public Calendario insert(Calendario calendario) throws Exception {
+    public Calendario insert(Calendario calendario) {
         return calendarioRepository.save(calendario);
     }
 
     @Override
-    public List<Calendario> getAllByCurId(Long curId) throws Exception {
-        return calendarioRepository.findAllByCalCurso_CurId(curId);
+    public List<Calendario> getAllByCurId(Long curId) {
+        return calendarioRepository.findAllById(curId);
     }
 
     @Override
-    public Calendario update(Calendario calendario) throws Exception {
-        if (calendario.getNullAtributes().size() == 0) {
-            return calendarioRepository.save(calendario);
+    public Calendario update(Calendario calendario) {
+        try {
+            if (calendario.getNullAtributes().size() == 0) {
+                return calendarioRepository.save(calendario);
+            }
+        } catch (IllegalAccessException e) {
+            log.error("El calendario no se actualizo porque tenia atributos nulos: "+ e);
         }
-        log.error("El calendario no se actualizo porque tenia los siguientes atributos nulos: "+ calendario.getNullAtributes());
+
         return calendario;
     }
 

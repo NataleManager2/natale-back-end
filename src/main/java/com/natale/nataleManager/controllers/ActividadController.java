@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,25 +23,25 @@ public class ActividadController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Obtiene una Actividad.")
-    public Actividad get(@RequestParam("id") Long id) throws Exception {
+    public Actividad get(@RequestParam("id") Long id) {
         return actividadService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todos las Actividades.")
-    public List<Actividad> getAll() throws Exception {
+    public List<Actividad> getAll() {
         return actividadService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
     @ApiOperation(value = "Crea una nueva Actividad")
-    public Actividad insert(@RequestBody Actividad act) throws Exception {
+    public Actividad insert(@RequestBody Actividad act) {
         return actividadService.insert(act);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
     @ApiOperation(value = "Actualiza una Actividad")
-    public Actividad update(@RequestBody Actividad act) throws Exception {
+    public Actividad update(@RequestBody Actividad act) {
         return actividadService.update(act);
     }
 

@@ -3,10 +3,7 @@ package com.natale.nataleManager.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,54 +14,54 @@ public class Calendario  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CAL_ID", nullable = false)
-    private Long calId;
+    @Column(name = "ID", nullable = false)
+    private Long id;
 
     @JsonFormat(timezone = "GMT-3", pattern = "dd/MM/yyyy hh:mm")
-    @Column(name = "CAL_FECHA")
-    private Date calFecha;
+    @Column(name = "FECHA")
+    private Date fecha;
 
     @Lob
-    @Column(name = "CAL_MATERIAL")
-    private byte[] calMaterial;
+    @Column(name = "MATERIAL")
+    private byte[] material;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CAL_CUR_ID")
-    private Curso calCurso;
+    @JoinColumn(name = "CURSO")
+    private Curso curso;
 
     public Calendario() {
     }
 
-    public Long getCalId() {
-        return calId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCalId(Long calId) {
-        this.calId = calId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Date getCalFecha() {
-        return calFecha;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setCalFecha(Date calFecha) {
-        this.calFecha = calFecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public Curso getCalCurso() {
-        return calCurso;
+    public Curso getCurso() {
+        return curso;
     }
 
-    public void setCalCurso(Curso calCurso) {
-        this.calCurso = calCurso;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
-    public byte[] getCalMaterial() {
-        return calMaterial;
+    public byte[] getMaterial() {
+        return material;
     }
 
-    public void setCalMaterial(byte[] calMaterial) {
-        this.calMaterial = calMaterial;
+    public void setMaterial(byte[] material) {
+        this.material = material;
     }
 
     public List<String> getNullAtributes() throws IllegalAccessException {

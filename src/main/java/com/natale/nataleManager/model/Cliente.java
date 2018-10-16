@@ -1,6 +1,8 @@
 package com.natale.nataleManager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.natale.nataleManager.model.enums.EstadoCliente;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -14,146 +16,119 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="CLI_ID",nullable = false)
-    private Long cliId;
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name="CLI_DNI",nullable = false)
-    private Long cliDni;
+    @Column(name="DNI",nullable = false)
+    private Long dni;
 
-    @Column(name="CLI_NOMBRE")
-    private String cliNombre;
+    @Column(name="NOMBRE")
+    private String nombre;
 
-    @Column(name="CLI_TEL")
-    private String cliTel;
+    @Column(name="TEL")
+    private String telefono;
 
-    @Column(name="CLI_EMAIL")
-    private String cliEmail;
+    @Column(name="EMAIL")
+    private String email;
 
-    @Column(name="CLI_BORRADO")
-    private Boolean cliBorrado;
-
-    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
-    @Column(name="CLI_FPP")
-    private Date cliFpp;
+    @Column(name="ESTADO")
+    private EstadoCliente estado;
 
     @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
-    @Column(name="CLI_FUM")
-    private Date cliFum;
+    @Column(name="FECHA_PROBABLE_PARTO")
+    private Date fechaProbableParto;
+
+    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
+    @Column(name="FECHA_ULTIMA_MENSTRUACION")
+    private Date fechaUltimaMenstruacion;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="CLI_OBRASOCIAL")
-    private ObraSocial cliObraSocial;
+    @JoinColumn(name="OBRASOCIAL")
+    private ObraSocial obraSocial;
 
     @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
-    @Column(name="CLI_FECHA_REGISTRO")
-    private Date cliFechaRegistro;
-
-    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
-    @Column(name="CLI_FECHA_BAJA")
-    private Date cliFechaBaja;
-
-    @JsonFormat(timezone = "GMT-3",pattern = "dd/MM/yyyy")
-    @Column(name="CLI_FECHA_MOD")
-    private Date cliFechaMod;
+    @Column(name="FECHA_REGISTRO")
+    private Date fechaRegistro;
 
 
-    public Cliente() {
+    public Long getId() {
+        return id;
     }
 
-    public long getCliId() {
-        return cliId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCliId(long cliId) {
-        this.cliId = cliId;
+    public Long getDni() {
+        return dni;
     }
 
-    public Long getCliDni() {
-        return cliDni;
+    public void setDni(Long dni) {
+        this.dni = dni;
     }
 
-    public void setCliDni(Long cliDni) {
-        this.cliDni = cliDni;
+    public String getNombre() {
+        return nombre;
     }
 
-    public String getCliNombre() {
-        return cliNombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setCliNombre(String cliNombre) {
-        this.cliNombre = cliNombre;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public String getCliTel() {
-        return cliTel;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public void setCliTel(String cliTel) {
-        this.cliTel = cliTel;
+    public String getEmail() {
+        return email;
     }
 
-    public String getCliEmail() {
-        return cliEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setCliEmail(String cliEmail) {
-        this.cliEmail = cliEmail;
+    public EstadoCliente getEstado() {
+        return estado;
     }
 
-    public Boolean getCliBorrado() {
-        return cliBorrado;
+    public void setEstado(EstadoCliente estado) {
+        this.estado = estado;
     }
 
-    public void setCliBorrado(Boolean cliBorrado) {
-        this.cliBorrado = cliBorrado;
+    public Date getFechaProbableParto() {
+        return fechaProbableParto;
     }
 
-    public Date getCliFpp() {
-        return cliFpp;
+    public void setFechaProbableParto(Date fechaProbableParto) {
+        this.fechaProbableParto = fechaProbableParto;
     }
 
-    public void setCliFpp(Date cliFpp) {
-        this.cliFpp = cliFpp;
+    public Date getFechaUltimaMenstruacion() {
+        return fechaUltimaMenstruacion;
     }
 
-    public Date getCliFum() {
-        return cliFum;
+    public void setFechaUltimaMenstruacion(Date fechaUltimaMenstruacion) {
+        this.fechaUltimaMenstruacion = fechaUltimaMenstruacion;
     }
 
-    public void setCliFum(Date cliFum) {
-        this.cliFum = cliFum;
+    public ObraSocial getObraSocial() {
+        return obraSocial;
     }
 
-    public ObraSocial getCliObraSocial() {
-        return cliObraSocial;
+    public void setObraSocial(ObraSocial obraSocial) {
+        this.obraSocial = obraSocial;
     }
 
-    public void setCliObraSocial(ObraSocial cliObraSocial) {
-        this.cliObraSocial = cliObraSocial;
+    public Date getFechaRegistro() {
+        return fechaRegistro;
     }
 
-    public Date getCliFechaRegistro() {
-        return cliFechaRegistro;
-    }
-
-    public void setCliFechaRegistro(Date cliFechaRegistro) {
-        this.cliFechaRegistro = cliFechaRegistro;
-    }
-
-    public Date getCliFechaBaja() {
-        return cliFechaBaja;
-    }
-
-    public void setCliFechaBaja(Date cliFechaBaja) {
-        this.cliFechaBaja = cliFechaBaja;
-    }
-
-    public Date getCliFechaMod() {
-        return cliFechaMod;
-    }
-
-    public void setCliFechaMod(Date cliFechaMod) {
-        this.cliFechaMod = cliFechaMod;
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     public List<String> getNullAtributes() throws IllegalAccessException {

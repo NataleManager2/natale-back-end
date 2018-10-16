@@ -2,13 +2,10 @@ package com.natale.nataleManager.controllers;
 
 import com.natale.nataleManager.model.Curso;
 import com.natale.nataleManager.service.CursoService;
-import com.natale.nataleManager.service.TallerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/curso")
@@ -24,25 +21,25 @@ public class CursoController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Obtiene un Curso.")
-    public Curso get(@RequestParam("id") Long id) throws Exception {
+    public Curso get(@RequestParam("id") Long id) {
         return cursoService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todos los cursos.")
-    public List<Curso> getAll() throws Exception {
+    public Iterable<Curso> getAll() {
         return cursoService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
     @ApiOperation(value = "Crea un nuevo Curso")
-    public Curso insert(@RequestBody Curso curso) throws Exception {
+    public Curso insert(@RequestBody Curso curso) {
         return cursoService.insert(curso);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
     @ApiOperation(value = "Actualiza un Curso")
-    public Curso update(@RequestBody Curso curso) throws Exception {
+    public Curso update(@RequestBody Curso curso) {
         return cursoService.update(curso);
     }
 

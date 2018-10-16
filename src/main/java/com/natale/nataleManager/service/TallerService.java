@@ -7,9 +7,9 @@ import java.util.List;
 
 @Service
 public interface TallerService {
-    Taller get(Long id) throws Exception;
-    Taller insert(Taller taller) throws Exception;
-    List<Taller> getAll() throws Exception;
-    Taller update(Taller taller) throws Exception;
-    void delete(Long id) throws Exception;
+    Taller get(Long id);
+    Taller insert(Taller taller);
+    List<Taller> getAll();
+    Taller update(Taller taller);
+    void delete(Long id);
 }

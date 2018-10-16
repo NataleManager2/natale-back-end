@@ -1,98 +1,101 @@
 package com.natale.nataleManager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.beans.BeanUtils;
+import com.natale.nataleManager.model.enums.EstadoInscripcion;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="INSCRIPCION")
-public class Inscripcion implements Serializable {
+public class Inscripcion implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="INS_ID",nullable = false)
-    private Long insId;
+    @Column(name="ID",nullable = false)
+    private Long id;
 
     @JsonFormat(timezone = "GMT-3", pattern = "dd/MM/yyyy hh:mm")
-    @Column(name="INS_FECHA",nullable = false)
-    private Date insFecha;
+    @Column(name="FECHA",nullable = false)
+    private Date fecha;
 
-    @Column(name="INS_CREDITOS",nullable = false)
-    private int insCreditos;
+    @Column(name="CREDITOS",nullable = false)
+    private int creditos;
 
     @JsonFormat(timezone = "GMT-3", pattern = "dd/MM/yyyy hh:mm")
-    @Column(name="INS_ULTIMA_ASISTENCIA",nullable = false)
-    private Date insUltimaAsistencia;
+    @Column(name="ULTIMA_ASISTENCIA",nullable = false)
+    private Date ultimaAsistencia;
 
-    @Column(name="INS_PENDIENTE_APROBACION",nullable = false)
-    private Boolean isPendienteAprobacion;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="INS_CLI_ID",nullable = false)
-    private Cliente insCliente;
+    @Column(name="ESTADO",nullable = false)
+    private EstadoInscripcion estado;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="INS_ACT_ID",nullable = false)
-    private Actividad insActividad;
+    @JoinColumn(name="CLIENTE")
+    private Cliente cliente;
 
-    public Inscripcion() {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="ACTIVIDAD")
+    private Actividad actividad;
+
+    public Long getId() {
+        return id;
     }
 
-    public Long getInsId() {
-        return insId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setInsId(Long insId) {
-        this.insId = insId;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public Date getInsFecha() {
-        return insFecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public void setInsFecha(Date insFecha) {
-        this.insFecha = insFecha;
+    public int getCreditos() {
+        return creditos;
     }
 
-    public Cliente getInsCliente() {
-        return insCliente;
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
     }
 
-    public void setInsCliente(Cliente insCliente) {
-        this.insCliente = insCliente;
+    public Date getUltimaAsistencia() {
+        return ultimaAsistencia;
     }
 
-    public Actividad getInsActividad() {
-        return insActividad;
+    public void setUltimaAsistencia(Date ultimaAsistencia) {
+        this.ultimaAsistencia = ultimaAsistencia;
     }
 
-    public void setInsActividad(Actividad insActividad) {
-        this.insActividad = insActividad;
+    public EstadoInscripcion getEstado() {
+        return estado;
     }
 
-    public int getInsCreditos() {
-        return insCreditos;
+    public void setEstado(EstadoInscripcion estado) {
+        this.estado = estado;
     }
 
-    public void setInsCreditos(int insCreditos) {
-        this.insCreditos = insCreditos;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public Date getInsUltimaAsistencia() {
-        return insUltimaAsistencia;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public void setInsUltimaAsistencia(Date insUltimaAsistencia) {
-        this.insUltimaAsistencia = insUltimaAsistencia;
+    public Actividad getActividad() {
+        return actividad;
     }
 
-    public Boolean getPendienteAprobacion() { return isPendienteAprobacion; }
-
-    public void setPendienteAprobacion(Boolean pendienteAprovacion) { isPendienteAprobacion = pendienteAprovacion; }
+    public void setActividad(Actividad actividad) {
+        this.actividad = actividad;
+    }
 
     public List<String> getNullAtributes() throws IllegalAccessException {
         List<String> atributosNulos = new ArrayList<>();

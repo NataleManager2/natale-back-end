@@ -7,9 +7,9 @@ import java.util.List;
 
 @Service
 public interface CalendarioService {
-    Calendario get(Long id) throws Exception;
-    Calendario insert(Calendario calendario) throws Exception;
-    List<Calendario> getAllByCurId(Long curId) throws Exception;
-    Calendario update(Calendario calendario) throws Exception;
-    void delete(Long id) throws Exception;
+    Calendario get(Long id);
+    Calendario insert(Calendario calendario);
+    List<Calendario> getAllByCurId(Long curId);
+    Calendario update(Calendario calendario);
+    void delete(Long id);
 }

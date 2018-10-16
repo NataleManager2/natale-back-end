@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 @Component
@@ -21,7 +22,7 @@ public class ObraSocialServiceImpl implements ObraSocialService {
     }
 
     @Override
-    public ObraSocial get(Long id) throws Exception {
+    public ObraSocial get(Long id) {
         ObraSocial obraSocial = new ObraSocial();
         try{
             obraSocial = obraSocialRepository.findOne(id);
@@ -34,21 +35,25 @@ public class ObraSocialServiceImpl implements ObraSocialService {
     }
 
     @Override
-    public ObraSocial insert(ObraSocial obraSocial) throws Exception {
+    public ObraSocial insert(ObraSocial obraSocial) {
         return obraSocialRepository.save(obraSocial);
     }
 
     @Override
-    public List<ObraSocial> getAll() throws Exception {
+    public List<ObraSocial> getAll() {
         return obraSocialRepository.findAll();
     }
 
     @Override
-    public ObraSocial update(ObraSocial obraSocial) throws Exception {
-        if (obraSocial.getNullAtributes().size() == 0) {
-            return obraSocialRepository.save(obraSocial);
+    public ObraSocial update(ObraSocial obraSocial) {
+        try {
+            if (obraSocial.getNullAtributes().size() == 0) {
+                return obraSocialRepository.save(obraSocial);
+            }
+        } catch (IllegalAccessException e) {
+            log.error("La obraSocial no se actualizo porque tenia atributos nulos: "+ e);
         }
-        log.error("La obraSocial no se actualizo porque tenia los siguientes atributos nulos: "+ obraSocial.getNullAtributes());
+
         return obraSocial;
     }
 
