@@ -11,5 +11,5 @@ public interface TallerService {
     Taller insert(Taller taller);
     List<Taller> getAll();
     Taller update(Taller taller);
-    void delete(Long id);
+    void delete(Taller taller);
 }

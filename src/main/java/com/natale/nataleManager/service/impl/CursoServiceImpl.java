@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class CursoServiceImpl implements CursoService {
 
@@ -21,15 +23,15 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso get(Long id)  {
-        Curso curso = new Curso();
+        Optional<Curso> curso = Optional.of(new Curso());
         try{
-            curso = cursoRepository.findOne(id);
+            curso = cursoRepository.findById(id);
             log.debug("findOne curso id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("failed findingOne curso with id: "+id);
         }
-        return curso;
+        return curso.orElse(null);
     }
 
     @Override
@@ -56,8 +58,8 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
-    public void delete(Long id) {
-        cursoRepository.delete(id);
+    public void delete(Curso curso) {
+        cursoRepository.delete(curso);
     }
 
 

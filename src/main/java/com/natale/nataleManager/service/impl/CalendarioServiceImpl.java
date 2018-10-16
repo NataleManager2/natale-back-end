@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CalendarioServiceImpl implements CalendarioService {
@@ -23,15 +24,15 @@ public class CalendarioServiceImpl implements CalendarioService {
 
     @Override
     public Calendario get(Long id) {
-        Calendario calendario = new Calendario();
+        Optional<Calendario> calendario = Optional.of(new Calendario());
         try{
-            calendario = calendarioRepository.findOne(id);
+            calendario = calendarioRepository.findById(id);
             log.debug("findOne calendario id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("failed findingOne calendario with id: "+id);
         }
-        return calendario;
+        return calendario.orElse(null);
     }
 
     @Override
@@ -58,8 +59,8 @@ public class CalendarioServiceImpl implements CalendarioService {
     }
 
     @Override
-    public void delete(Long id) {
-        calendarioRepository.delete(id);
+    public void delete(Calendario calendario) {
+        calendarioRepository.delete(calendario);
     }
 
 

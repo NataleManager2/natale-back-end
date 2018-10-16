@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ActividadServiceImpl implements ActividadService {
@@ -25,15 +26,15 @@ public class ActividadServiceImpl implements ActividadService {
 
     @Override
     public Actividad get(Long id) {
-        Actividad act = new Actividad();
+        Optional<Actividad> act = Optional.of(new Actividad());
         try{
-            act = actividadRepository.findOne(id);
+            act = actividadRepository.findById(id);
             log.debug("findOne activity id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("failed findingOne activity with id: "+id);
         }
-        return act;
+        return act.orElse(null);
     }
 
     @Override
@@ -60,8 +61,8 @@ public class ActividadServiceImpl implements ActividadService {
     }
 
     @Override
-    public void delete(Long id) {
-        actividadRepository.delete(id);
+    public void delete(Actividad actividad) {
+        actividadRepository.delete(actividad);
     }
 
 

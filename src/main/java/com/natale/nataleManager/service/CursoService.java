@@ -9,5 +9,5 @@ public interface CursoService {
     Curso insert(Curso curso);
     Iterable<Curso> getAll();
     Curso update(Curso curso);
-    void delete(Long id);
+    void delete(Curso curso);
 }

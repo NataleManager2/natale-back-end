@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class ClienteServiceImpl implements ClienteService {
 
@@ -21,15 +23,15 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente get(Long id) {
-        Cliente cliente = new Cliente();
+        Optional<Cliente> cliente = Optional.of(new Cliente());
         try{
-            cliente = clienteRepository.findOne(id);
+            cliente = clienteRepository.findById(id);
             log.debug("findOne client id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("failed findingOne client with id: "+id);
         }
-        return cliente;
+        return cliente.orElse(null);
     }
 
     @Override
@@ -56,8 +58,8 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public void delete(Long id) {
-        clienteRepository.delete(id);
+    public void delete(Cliente cliente) {
+        clienteRepository.delete(cliente);
     }
 
 

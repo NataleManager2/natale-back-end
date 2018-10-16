@@ -9,5 +9,5 @@ public interface ClienteService {
     Cliente insert(Cliente cliente);
     Iterable<Cliente> getAll();
     Cliente update(Cliente cliente);
-    void delete(Long id);
+    void delete(Cliente cliente);
 }

@@ -11,5 +11,5 @@ public interface CalendarioService {
     Calendario insert(Calendario calendario);
     List<Calendario> getAllByCurId(Long curId);
     Calendario update(Calendario calendario);
-    void delete(Long id);
+    void delete(Calendario calendario);
 }

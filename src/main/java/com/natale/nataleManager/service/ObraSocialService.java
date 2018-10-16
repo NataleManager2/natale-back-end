@@ -11,5 +11,5 @@ public interface ObraSocialService {
     ObraSocial insert(ObraSocial os);
     List<ObraSocial> getAll();
     ObraSocial update(ObraSocial os);
-    void delete(Long id);
+    void delete(ObraSocial obraSocial);
 }

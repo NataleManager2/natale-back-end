@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ObraSocialServiceImpl implements ObraSocialService {
@@ -23,15 +24,15 @@ public class ObraSocialServiceImpl implements ObraSocialService {
 
     @Override
     public ObraSocial get(Long id) {
-        ObraSocial obraSocial = new ObraSocial();
+        Optional<ObraSocial> obraSocial = Optional.of(new ObraSocial());
         try{
-            obraSocial = obraSocialRepository.findOne(id);
+            obraSocial = obraSocialRepository.findById(id);
             log.debug("findOne obraSocial id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("failed findingOne obraSocial with id: "+id);
         }
-        return obraSocial;
+        return obraSocial.orElse(null);
     }
 
     @Override
@@ -58,8 +59,8 @@ public class ObraSocialServiceImpl implements ObraSocialService {
     }
 
     @Override
-    public void delete(Long id) {
-        obraSocialRepository.delete(id);
+    public void delete(ObraSocial obraSocial) {
+        obraSocialRepository.delete(obraSocial);
     }
 
 

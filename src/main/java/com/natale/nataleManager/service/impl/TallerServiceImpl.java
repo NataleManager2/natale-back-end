@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class TallerServiceImpl implements TallerService {
@@ -24,15 +25,15 @@ public class TallerServiceImpl implements TallerService {
 
     @Override
     public Taller get(Long id) {
-        Taller taller = new Taller();
+        Optional<Taller> taller = Optional.of(new Taller());
         try{
-            taller = tallerRepository.findOne(id);
+            taller = tallerRepository.findById(id);
             log.debug("findOne taller id: "+id+" succesful");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("failed findingOne taller with id: "+id);
         }
-        return taller;
+        return taller.orElse(null);
     }
 
     @Override
@@ -59,8 +60,8 @@ public class TallerServiceImpl implements TallerService {
     }
 
     @Override
-    public void delete(Long id) {
-        tallerRepository.delete(id);
+    public void delete(Taller taller) {
+        tallerRepository.delete(taller);
     }
 
 

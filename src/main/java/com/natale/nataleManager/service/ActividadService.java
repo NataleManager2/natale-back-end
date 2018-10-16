@@ -11,5 +11,5 @@ public interface ActividadService {
     Actividad insert(Actividad actividad);
     List<Actividad> getAll();
     Actividad update(Actividad actividad);
-    void delete(Long id);
+    void delete(Actividad actividad);
 }

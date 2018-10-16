@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class InscripcionServiceImpl implements InscripcionService {
@@ -25,15 +26,15 @@ public class InscripcionServiceImpl implements InscripcionService {
 
     @Override
     public Inscripcion get(Long id) {
-        Inscripcion inscripcion = new Inscripcion();
+        Optional<Inscripcion> inscripcion = Optional.of(new Inscripcion());
         try {
-            inscripcion = inscripcionRepository.findOne(id);
+            inscripcion = inscripcionRepository.findById(id);
             log.debug("findOne inscripcion id: " + id + " succesful");
         } catch (Exception e) {
             e.printStackTrace();
             log.error("failed findingOne inscripcion with id: " + id);
         }
-        return inscripcion;
+        return inscripcion.orElse(null);
     }
 
     @Override
@@ -60,8 +61,8 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
-    public void delete(Long id) {
-        inscripcionRepository.delete(id);
+    public void delete(Inscripcion inscripcion) {
+        inscripcionRepository.delete(inscripcion);
     }
 
     @Override

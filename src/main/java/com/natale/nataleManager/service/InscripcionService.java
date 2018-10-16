@@ -12,6 +12,6 @@ public interface InscripcionService {
     Inscripcion insert(Inscripcion ins);
     List<Inscripcion> getAll();
     Inscripcion update(Inscripcion ins);
-    void delete(Long id);
+    void delete(Inscripcion inscripcion);
     List<Inscripcion> getInscripcionesByEstado(EstadoInscripcion estadoInscripcion);
 }
