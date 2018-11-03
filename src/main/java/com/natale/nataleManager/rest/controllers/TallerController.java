@@ -1,4 +1,4 @@
-package com.natale.nataleManager.controllers;
+package com.natale.nataleManager.rest.controllers;
 
 import com.natale.nataleManager.model.Taller;
 import com.natale.nataleManager.service.TallerService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/taller")
+@RequestMapping(value = "/api/taller")
 @Api(tags = {"taller"})
 public class TallerController {
 

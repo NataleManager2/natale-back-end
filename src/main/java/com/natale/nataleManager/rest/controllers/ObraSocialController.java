@@ -1,4 +1,4 @@
-package com.natale.nataleManager.controllers;
+package com.natale.nataleManager.rest.controllers;
 
 import com.natale.nataleManager.model.ObraSocial;
 import com.natale.nataleManager.service.ObraSocialService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/obrasocial")
+@RequestMapping(value = "/api/obrasocial")
 @Api(tags = {"obra-social"})
 public class ObraSocialController {
 

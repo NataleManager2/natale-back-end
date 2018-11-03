@@ -1,4 +1,4 @@
-package com.natale.nataleManager.controllers;
+package com.natale.nataleManager.rest.controllers;
 
 import com.natale.nataleManager.model.Actividad;
 import com.natale.nataleManager.service.ActividadService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/actividad")
+@RequestMapping(value = "/api/actividad")
 @Api(tags = {"actividad"})
 public class ActividadController {
 

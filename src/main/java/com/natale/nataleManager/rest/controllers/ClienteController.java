@@ -1,4 +1,4 @@
-package com.natale.nataleManager.controllers;
+package com.natale.nataleManager.rest.controllers;
 
 import com.natale.nataleManager.model.Cliente;
 import com.natale.nataleManager.service.ClienteService;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/cliente")
+@RequestMapping(value = "/api/cliente")
 @Api(tags = {"clientes"})
 public class ClienteController {
 

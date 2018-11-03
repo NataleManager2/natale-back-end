@@ -1,4 +1,4 @@
-package com.natale.nataleManager.controllers;
+package com.natale.nataleManager.rest.controllers;
 
 import com.natale.nataleManager.model.Curso;
 import com.natale.nataleManager.service.CursoService;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/curso")
+@RequestMapping(value = "/api/curso")
 @Api(tags = {"curso"})
 public class CursoController {
 

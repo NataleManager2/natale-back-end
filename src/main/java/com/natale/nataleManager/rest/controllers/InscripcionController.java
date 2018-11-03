@@ -1,4 +1,4 @@
-package com.natale.nataleManager.controllers;
+package com.natale.nataleManager.rest.controllers;
 
 import com.natale.nataleManager.model.Inscripcion;
 import com.natale.nataleManager.model.enums.EstadoInscripcion;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/inscripcion")
+@RequestMapping(value = "/api/inscripcion")
 @Api(tags = {"inscripciones"})
 public class InscripcionController {
 

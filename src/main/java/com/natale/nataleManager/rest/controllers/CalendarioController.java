@@ -1,4 +1,4 @@
-package com.natale.nataleManager.controllers;
+package com.natale.nataleManager.rest.controllers;
 
 import com.natale.nataleManager.model.Calendario;
 import com.natale.nataleManager.service.CalendarioService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/calendario")
+@RequestMapping(value = "/api/calendario")
 @Api(tags = {"calendario"})
 public class CalendarioController {
 
