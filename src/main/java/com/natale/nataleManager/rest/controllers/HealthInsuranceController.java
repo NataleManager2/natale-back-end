@@ -34,13 +34,13 @@ public class HealthInsuranceController {
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo healthInsurance")
+    @ApiOperation(value = "Creates a healthInsurance")
     public HealthInsurance insert(@RequestBody HealthInsurance healthInsurance) {
         return healthInsuranceService.insert(healthInsurance);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un healthInsurance")
+    @ApiOperation(value = "Updates a healthInsurance")
     public HealthInsurance update(@RequestBody HealthInsurance healthInsurance) {
         return healthInsuranceService.update(healthInsurance);
     }

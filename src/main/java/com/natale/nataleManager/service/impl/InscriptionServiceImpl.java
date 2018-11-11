@@ -66,7 +66,7 @@ public class InscriptionServiceImpl implements InscriptionService {
     }
 
     @Override
-    public List<Inscription> getInscripcionesByEstado(InscriptionState inscriptionState) {
+    public List<Inscription> getInscriptionsByState(InscriptionState inscriptionState) {
         return inscriptionRepository.findAllByState(inscriptionState);
     }
 

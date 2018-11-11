@@ -34,13 +34,13 @@ public class CourseController {
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo Course")
+    @ApiOperation(value = "Creates a new Course")
     public Course insert(@RequestBody Course course) {
         return courseService.insert(course);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un Course")
+    @ApiOperation(value = "Updates a Course")
     public Course update(@RequestBody Course course) {
         return courseService.update(course);
     }

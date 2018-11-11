@@ -13,5 +13,5 @@ public interface InscriptionService {
     List<Inscription> getAll();
     Inscription update(Inscription ins);
     void delete(Inscription inscription);
-    List<Inscription> getInscripcionesByEstado(InscriptionState inscriptionState);
+    List<Inscription> getInscriptionsByState(InscriptionState inscriptionState);
 }

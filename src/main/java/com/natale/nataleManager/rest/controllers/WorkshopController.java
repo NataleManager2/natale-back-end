@@ -21,26 +21,26 @@ public class WorkshopController {
         this.workshopService = workshopService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene un Workshop.")
-    public Workshop get(@RequestParam("id") Long id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ApiOperation(value = "Obtains a Workshop.")
+    public Workshop get(@PathVariable("id") Long id) {
         return workshopService.get(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todos los Talleres.")
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Obtains a list of all Workshops")
     public List<Workshop> getAll() {
         return workshopService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo Workshop")
+    @ApiOperation(value = "Creates a new Workshop")
     public Workshop insert(@RequestBody Workshop workshop) {
         return workshopService.insert(workshop);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un Workshop")
+    @ApiOperation(value = "Update an existing Workshop")
     public Workshop update(@RequestBody Workshop workshop) {
         return workshopService.update(workshop);
     }

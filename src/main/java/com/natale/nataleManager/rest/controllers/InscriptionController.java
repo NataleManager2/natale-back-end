@@ -22,32 +22,32 @@ public class InscriptionController {
         this.inscriptionService = inscriptionService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene un inscripcion.")
-    public Inscription get(@RequestParam("id") Long id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ApiOperation(value = "Obtains an inscription.")
+    public Inscription get(@PathVariable("id") Long id) {
         return inscriptionService.get(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todos las inscripciones.")
+    @RequestMapping(method = RequestMethod.GET, value = "/all")
+    @ApiOperation(value = "Obtains all inscriptions.")
     public List<Inscription> getAll() {
         return inscriptionService.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/listado/pendientes")
-    @ApiOperation(value = "Obtiene un listado de todos las inscripciones pendientes o no, segun se exprese en el parametro.")
-    public List<Inscription> getInscripcionesPendientes(@RequestParam("pendientes") String estado) {
-        return inscriptionService.getInscripcionesByEstado(InscriptionState.valueOf(estado));
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Obtains all inscriptions with the specified state.")
+    public List<Inscription> getInscriptionsByState(@RequestParam("state") String state) {
+        return inscriptionService.getInscriptionsByState(InscriptionState.valueOf(state));
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea una nueva inscription")
+    @ApiOperation(value = "Creates a new inscription.")
     public Inscription insert(@RequestBody Inscription inscription) {
         return inscriptionService.insert(inscription);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un inscription")
+    @ApiOperation(value = "Update an existing inscription.")
     public Inscription update(@RequestBody Inscription inscription) {
         return inscriptionService.update(inscription);
     }
