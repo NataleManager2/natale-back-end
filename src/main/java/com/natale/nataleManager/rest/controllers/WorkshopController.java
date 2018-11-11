@@ -12,12 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/taller")
 @Api(tags = {"taller"})
-public class TallerController {
+public class WorkshopController {
 
     private final WorkshopService workshopService;
 
     @Autowired
-    public TallerController(WorkshopService workshopService) {
+    public WorkshopController(WorkshopService workshopService) {
         this.workshopService = workshopService;
     }
 

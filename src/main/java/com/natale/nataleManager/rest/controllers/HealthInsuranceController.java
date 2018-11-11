@@ -10,25 +10,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/obrasocial")
-@Api(tags = {"obra-social"})
-public class ObraSocialController {
+@RequestMapping(value = "/api/healthInsurances")
+@Api(tags = {"healthInsurances"})
+public class HealthInsuranceController {
 
     private final HealthInsuranceService healthInsuranceService;
 
     @Autowired
-    public ObraSocialController(HealthInsuranceService healthInsuranceService) {
+    public HealthInsuranceController(HealthInsuranceService healthInsuranceService) {
         this.healthInsuranceService = healthInsuranceService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene una Obra Social.")
-    public HealthInsurance get(@RequestParam("id") Long id) {
+    @RequestMapping(method = RequestMethod.GET, value = "{id}")
+    @ApiOperation(value = "Obtains a Health Insurance.")
+    public HealthInsurance get(@PathVariable("id") Long id) {
         return healthInsuranceService.get(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todas las obras sociales.")
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Obtains a list of all Health insurances.")
     public List<HealthInsurance> getAll() {
         return healthInsuranceService.getAll();
     }

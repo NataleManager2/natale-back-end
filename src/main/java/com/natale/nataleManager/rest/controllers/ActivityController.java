@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/actividad")
-@Api(tags = {"actividad"})
-public class ActividadController {
+@RequestMapping(value = "/api/activities")
+@Api(tags = {"activities"})
+public class ActivityController {
 
     private final ActivityService activityService;
 
     @Autowired
-    public ActividadController(ActivityService activityService) {
+    public ActivityController(ActivityService activityService) {
         this.activityService = activityService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene una Activity.")
-    public Activity get(@RequestParam("id") Long id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ApiOperation(value = "Obtains an Activity by id.")
+    public Activity get(@PathVariable("id") Long id) {
         return activityService.get(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todos las Actividades.")
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Obtains a list of all activities")
     public List<Activity> getAll() {
         return activityService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea una nueva Activity")
+    @ApiOperation(value = "Creates an Activity")
     public Activity insert(@RequestBody Activity act) {
         return activityService.insert(act);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza una Activity")
+    @ApiOperation(value = "Updates an Activity")
     public Activity update(@RequestBody Activity act) {
         return activityService.update(act);
     }

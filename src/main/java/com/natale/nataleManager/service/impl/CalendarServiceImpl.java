@@ -41,8 +41,8 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     @Override
-    public List<Calendar> getAllByCurId(Long curId) {
-        return calendarRepository.findAllById(curId);
+    public List<Calendar> getAllByCourseId(Long courseId) {
+        return calendarRepository.findAllByCourse_Id(courseId);
     }
 
     @Override
@@ -61,6 +61,11 @@ public class CalendarServiceImpl implements CalendarService {
     @Override
     public void delete(Calendar calendar) {
         calendarRepository.delete(calendar);
+    }
+
+    @Override
+    public List<Calendar> getAll() {
+        return calendarRepository.findAll();
     }
 
 

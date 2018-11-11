@@ -1,6 +1,7 @@
 package com.natale.nataleManager.service.impl;
 
 import com.natale.nataleManager.model.Customer;
+import com.natale.nataleManager.model.enums.CustomerState;
 import com.natale.nataleManager.repository.CustomerRepository;
 import com.natale.nataleManager.service.CustomerService;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -40,8 +42,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Iterable<Customer> getAll() {
-        return customerRepository.findAll();
+    public List<Customer> getAllByState(CustomerState state) {
+        return customerRepository.findAllByState(state);
     }
 
     @Override

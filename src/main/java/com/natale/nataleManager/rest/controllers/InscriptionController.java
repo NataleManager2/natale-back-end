@@ -13,12 +13,12 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/inscripcion")
 @Api(tags = {"inscripciones"})
-public class InscripcionController {
+public class InscriptionController {
 
     private final InscriptionService inscriptionService;
 
     @Autowired
-    public InscripcionController(InscriptionService inscriptionService) {
+    public InscriptionController(InscriptionService inscriptionService) {
         this.inscriptionService = inscriptionService;
     }
 

@@ -7,27 +7,29 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/api/curso")
-@Api(tags = {"curso"})
-public class CursoController {
+@RequestMapping(value = "/api/courses")
+@Api(tags = {"courses"})
+public class CourseController {
 
     private final CourseService courseService;
 
     @Autowired
-    public CursoController(CourseService courseService) {
+    public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene un Course.")
-    public Course get(@RequestParam("id") Long id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @ApiOperation(value = "Obtains a Course.")
+    public Course get(@PathVariable("id") Long id) {
         return courseService.get(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/listado")
-    @ApiOperation(value = "Obtiene un listado de todos los cursos.")
-    public Iterable<Course> getAll() {
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "Obtains a list of all courses.")
+    public List<Course> getAll() {
         return courseService.getAll();
     }
 
