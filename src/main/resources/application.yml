@@ -4,9 +4,12 @@ spring.jmx:
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/natale
-    username: postgres
-    password: postgres
+#    Heroku Postgresql
+    url: jdbc:postgresql://ec2-50-19-127-158.compute-1.amazonaws.com:5432/dfieejidf00mrp
+    username: exqfipwskmywjc
+    password: 4cbeb460d447a2dbf7ea9612bb2d5f80b82c6c5ab24a95bdc386a1e3398d62ac
+#    Local
+    
 
   jpa:
      hibernate:
@@ -17,11 +20,11 @@ spring:
      properties:
        hibernate:
          dialect: org.hibernate.dialect.PostgreSQLDialect
-  security:
-    user:
-      name: admin
-      password: admin
-      roles: USER
+#  security:
+#    user:
+#      name: admin
+#      password: admin
+#      roles: USER
 
 server:
   port: 8090
@@ -29,10 +32,10 @@ server:
 
 
 #management endpoints on a separate port
-management:
-  port: 8091
-  security:
-    enabled: false # management port is internal only. no need to secure it.
+#management:
+#  port: 8091
+#  security:
+#    enabled: false
 
 #default project info followed by actual injected pom-specified values.
 project:
