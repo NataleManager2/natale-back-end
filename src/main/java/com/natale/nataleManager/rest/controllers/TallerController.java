@@ -1,7 +1,7 @@
 package com.natale.nataleManager.rest.controllers;
 
-import com.natale.nataleManager.model.Taller;
-import com.natale.nataleManager.service.TallerService;
+import com.natale.nataleManager.model.Workshop;
+import com.natale.nataleManager.service.WorkshopService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,35 +14,35 @@ import java.util.List;
 @Api(tags = {"taller"})
 public class TallerController {
 
-    private final TallerService tallerService;
+    private final WorkshopService workshopService;
 
     @Autowired
-    public TallerController(TallerService tallerService) {
-        this.tallerService = tallerService;
+    public TallerController(WorkshopService workshopService) {
+        this.workshopService = workshopService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene un Taller.")
-    public Taller get(@RequestParam("id") Long id) {
-        return tallerService.get(id);
+    @ApiOperation(value = "Obtiene un Workshop.")
+    public Workshop get(@RequestParam("id") Long id) {
+        return workshopService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todos los Talleres.")
-    public List<Taller> getAll() {
-        return tallerService.getAll();
+    public List<Workshop> getAll() {
+        return workshopService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo Taller")
-    public Taller insert(@RequestBody Taller taller) {
-        return tallerService.insert(taller);
+    @ApiOperation(value = "Crea un nuevo Workshop")
+    public Workshop insert(@RequestBody Workshop workshop) {
+        return workshopService.insert(workshop);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un Taller")
-    public Taller update(@RequestBody Taller taller) {
-        return tallerService.update(taller);
+    @ApiOperation(value = "Actualiza un Workshop")
+    public Workshop update(@RequestBody Workshop workshop) {
+        return workshopService.update(workshop);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.natale.nataleManager.rest.controllers;
 
-import com.natale.nataleManager.model.Calendario;
-import com.natale.nataleManager.service.CalendarioService;
+import com.natale.nataleManager.model.Calendar;
+import com.natale.nataleManager.service.CalendarService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,35 +14,35 @@ import java.util.List;
 @Api(tags = {"calendario"})
 public class CalendarioController {
 
-    private final CalendarioService calendarioService;
+    private final CalendarService calendarService;
 
     @Autowired
-    public CalendarioController(CalendarioService calendarioService) {
-        this.calendarioService = calendarioService;
+    public CalendarioController(CalendarService calendarService) {
+        this.calendarService = calendarService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "Obtiene un Calendario.")
-    public Calendario get(@RequestParam("id") Long id) {
-        return calendarioService.get(id);
+    @ApiOperation(value = "Obtiene un Calendar.")
+    public Calendar get(@RequestParam("id") Long id) {
+        return calendarService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todos los calendarios.")
-    public List<Calendario> getAllByCurId(Long curId) {
-        return calendarioService.getAllByCurId(curId);
+    public List<Calendar> getAllByCurId(Long curId) {
+        return calendarService.getAllByCurId(curId);
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo Calendario")
-    public Calendario insert(@RequestBody Calendario calendario) {
-        return calendarioService.insert(calendario);
+    @ApiOperation(value = "Crea un nuevo Calendar")
+    public Calendar insert(@RequestBody Calendar calendar) {
+        return calendarService.insert(calendar);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un Calendario")
-    public Calendario update(@RequestBody Calendario calendario) {
-        return calendarioService.update(calendario);
+    @ApiOperation(value = "Actualiza un Calendar")
+    public Calendar update(@RequestBody Calendar calendar) {
+        return calendarService.update(calendar);
     }
 
 }

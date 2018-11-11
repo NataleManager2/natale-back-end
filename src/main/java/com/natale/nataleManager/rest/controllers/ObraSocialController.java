@@ -1,7 +1,7 @@
 package com.natale.nataleManager.rest.controllers;
 
-import com.natale.nataleManager.model.ObraSocial;
-import com.natale.nataleManager.service.ObraSocialService;
+import com.natale.nataleManager.model.HealthInsurance;
+import com.natale.nataleManager.service.HealthInsuranceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,35 +14,35 @@ import java.util.List;
 @Api(tags = {"obra-social"})
 public class ObraSocialController {
 
-    private final ObraSocialService obraSocialService;
+    private final HealthInsuranceService healthInsuranceService;
 
     @Autowired
-    public ObraSocialController(ObraSocialService obraSocialService) {
-        this.obraSocialService = obraSocialService;
+    public ObraSocialController(HealthInsuranceService healthInsuranceService) {
+        this.healthInsuranceService = healthInsuranceService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Obtiene una Obra Social.")
-    public ObraSocial get(@RequestParam("id") Long id) {
-        return obraSocialService.get(id);
+    public HealthInsurance get(@RequestParam("id") Long id) {
+        return healthInsuranceService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todas las obras sociales.")
-    public List<ObraSocial> getAll() {
-        return obraSocialService.getAll();
+    public List<HealthInsurance> getAll() {
+        return healthInsuranceService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo obraSocial")
-    public ObraSocial insert(@RequestBody ObraSocial obraSocial) {
-        return obraSocialService.insert(obraSocial);
+    @ApiOperation(value = "Crea un nuevo healthInsurance")
+    public HealthInsurance insert(@RequestBody HealthInsurance healthInsurance) {
+        return healthInsuranceService.insert(healthInsurance);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un obraSocial")
-    public ObraSocial update(@RequestBody ObraSocial obraSocial) {
-        return obraSocialService.update(obraSocial);
+    @ApiOperation(value = "Actualiza un healthInsurance")
+    public HealthInsurance update(@RequestBody HealthInsurance healthInsurance) {
+        return healthInsuranceService.update(healthInsurance);
     }
 
 }

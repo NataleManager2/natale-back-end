@@ -1,7 +1,7 @@
 package com.natale.nataleManager.rest.controllers;
 
-import com.natale.nataleManager.model.Cliente;
-import com.natale.nataleManager.service.ClienteService;
+import com.natale.nataleManager.model.Customer;
+import com.natale.nataleManager.service.CustomerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,35 +12,35 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = {"clientes"})
 public class ClienteController {
 
-    private final ClienteService clienteService;
+    private final CustomerService customerService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
+    public ClienteController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation(value = "Obtiene un cliente.")
-    public Cliente get(@RequestParam("id") Long id) {
-        return clienteService.get(id);
+    public Customer get(@RequestParam("id") Long id) {
+        return customerService.get(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/listado")
     @ApiOperation(value = "Obtiene un listado de todos los clientes activos.")
-    public Iterable<Cliente> getAll() {
-        return clienteService.getAll();
+    public Iterable<Customer> getAll() {
+        return customerService.getAll();
     }
 
     @RequestMapping(method= RequestMethod.POST)
-    @ApiOperation(value = "Crea un nuevo cliente")
-    public Cliente insert(@RequestBody Cliente cliente) {
-        return clienteService.insert(cliente);
+    @ApiOperation(value = "Crea un nuevo customer")
+    public Customer insert(@RequestBody Customer customer) {
+        return customerService.insert(customer);
     }
 
     @RequestMapping(method= RequestMethod.PUT)
-    @ApiOperation(value = "Actualiza un cliente")
-    public Cliente update(@RequestBody Cliente cliente) {
-        return clienteService.update(cliente);
+    @ApiOperation(value = "Actualiza un customer")
+    public Customer update(@RequestBody Customer customer) {
+        return customerService.update(customer);
     }
 
 }
