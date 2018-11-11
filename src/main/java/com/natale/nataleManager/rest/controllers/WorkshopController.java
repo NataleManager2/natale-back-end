@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/taller")
-@Api(tags = {"taller"})
+@RequestMapping(value = "/api/workshops")
+@Api(tags = {"workshops"})
 public class WorkshopController {
 
     private final WorkshopService workshopService;

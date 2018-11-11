@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/inscripcion")
-@Api(tags = {"inscripciones"})
+@RequestMapping(value = "/api/inscriptions")
+@Api(tags = {"inscriptions"})
 public class InscriptionController {
 
     private final InscriptionService inscriptionService;
